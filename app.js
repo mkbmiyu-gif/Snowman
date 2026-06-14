@@ -1,6 +1,5 @@
 let meigiData =
 JSON.parse(localStorage.getItem("meigiData")) || [];
-
 function saveData() {
   localStorage.setItem(
     "meigiData",
