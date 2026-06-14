@@ -1,3 +1,5 @@
+alert("app.js loaded");
+
 const PASSCODE = "0517";
 
 const lockScreen = document.getElementById("lockScreen");
