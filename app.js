@@ -1,238 +1,222 @@
-　　　　PASSCODE = "0517";
+const PASSCODE = “0517”;
 
-const lockScreen = document.getElementById("lockScreen");
-const app = document.getElementById("app");
+const lockScreen = document.getElementById(“lockScreen”);
+const app = document.getElementById(“app”);
 
 function unlockApp() {
-  const pin = document.getElementById("pinInput").value;
+const pin = document.getElementById(“pinInput”).value;
 
-  if (pin === PASSCODE) {
-    lockScreen.classList.add("hidden");
-    app.classList.remove("hidden");
-    renderMeigi();
-  } else {
-    alert("パスコードが違います");
-  }
+if (pin === PASSCODE) {
+lockScreen.classList.add(“hidden”);
+app.classList.remove(“hidden”);
+renderMeigi();
+} else {
+alert(“パスコードが違います”);
+}
 }
 
 let meigiData =
-JSON.parse(localStorage.getItem("meigiData")) || [];
+JSON.parse(localStorage.getItem(“meigiData”)) || [];
 
 function saveData() {
-  localStorage.setItem(
-    "meigiData",
-    JSON.stringify(meigiData)
-  );
+localStorage.setItem(
+“meigiData”,
+JSON.stringify(meigiData)
+);
 }
 
 function renderMeigi() {
 
-  const list =
-  document.getElementById("meigiList");
+const list =
+document.getElementById(“meigiList”);
 
-  list.innerHTML = "";
+list.innerHTML = “”;
 
-  meigiData.forEach((item,index)=>{
+meigiData.forEach((item,index)=>{
 
-    const card =
-    document.createElement("div");
+const card =
+document.createElement("div");
+card.className = "card";
+card.innerHTML = `
+  <h2>${item.name}</h2>
+  <p>
+  会員番号
+  ${item.memberNo || ""}
+  </p>
+  <p>
+  入会
+  ${item.joinDate || ""}
+  </p>
+  <p>
+  メモ
+  ${item.memo || ""}
+  </p>
+  <button onclick="editMeigi(${index})">
+  編集
+  </button>
+  <button onclick="deleteMeigi(${index})">
+  削除
+  </button>
+`;
+list.appendChild(card);
 
-    card.className = "card";
+});
 
-    card.innerHTML = `
-      <h2>${item.name}</h2>
+}
 
-      <p>
-      会員番号
-      ${item.memberNo || ""}
-      </p>
+function editMeigi(index){
 
-      <p>
-      入会
-      ${item.joinDate || ""}
-      </p>
+const item = meigiData[index];
 
-      <button onclick="deleteMeigi(${index})">
-      削除
-      </button>
-    `;
+item.name =
+prompt(“名前”, item.name);
 
-    list.appendChild(card);
+item.memberNo =
+prompt(“会員番号”, item.memberNo);
 
-  });
+item.joinDate =
+prompt(“入会日”, item.joinDate);
+
+item.memo =
+prompt(“メモ”, item.memo || “”);
+
+saveData();
+
+renderMeigi();
 
 }
 
 function deleteMeigi(index){
 
-  if(!confirm("削除しますか？")){
-    return;
-  }
+if(!confirm(“削除しますか？”)){
+return;
+}
 
-  meigiData.splice(index,1);
+meigiData.splice(index,1);
 
-  saveData();
+saveData();
 
-  renderMeigi();
+renderMeigi();
 
 }
 
 document
-.getElementById("addBtn")
-.addEventListener("click",()=>{
+.getElementById(“addBtn”)
+.addEventListener(“click”,()=>{
 
-  const name =
-  prompt("名前");
+const name =
+prompt(“名前”);
 
-  if(!name) return;
+if(!name) return;
 
-  const memberNo =
-  prompt("会員番号");
+const memberNo =
+prompt(“会員番号”);
 
-  const joinDate =
-  prompt("入会日");
+const joinDate =
+prompt(“入会日”);
 
-  const memo =
-prompt("メモ");
-  meigiData.push({
+const memo =
+prompt(“メモ”);
 
-    name,
-    memberNo,
-    joinDate,
-    　memo,
-    histories:[]
+meigiData.push({
 
-  });
+name,
+memberNo,
+joinDate,
+memo,
+histories:[]
 
-  saveData();
-  <p>
-入会
-${item.joinDate || ""}
-</p>
+});
 
-<p>
-メモ
-${item.memo || ""}
-</p>
+saveData();
 
-<button onclick="editMeigi(${index})">
-編集
-</button>
-
-<button onclick="deleteMeigi(${index})">
-削除
-</button>
+renderMeigi();
 
 });
 
 document
-.getElementById("searchInput")
-.addEventListener("input",(e)=>{
+.getElementById(“searchInput”)
+.addEventListener(“input”,(e)=>{
 
-  const keyword =
-  e.target.value.toLowerCase();
+const keyword =
+e.target.value.toLowerCase();
 
-  document
-  .querySelectorAll(".card")
-  .forEach(card=>{
+document
+.querySelectorAll(”.card”)
+.forEach(card=>{
 
-    const text =
-    card.innerText.toLowerCase();
+const text =
+card.innerText.toLowerCase();
+card.style.display =
+text.includes(keyword)
+? "block"
+: "none";
 
-    card.style.display =
-    text.includes(keyword)
-    ? "block"
-    : "none";
-
-  });
+});
 
 });
 
 document
-.getElementById("exportBtn")
-.addEventListener("click",()=>{
+.getElementById(“exportBtn”)
+.addEventListener(“click”,()=>{
 
-  const blob =
-  new Blob(
-    [JSON.stringify(meigiData)],
-    {type:"application/json"}
-  );
+const blob =
+new Blob(
+[JSON.stringify(meigiData)],
+{type:“application/json”}
+);
 
-  const a =
-  document.createElement("a");
+const a =
+document.createElement(“a”);
 
-  a.href =
-  URL.createObjectURL(blob);
+a.href =
+URL.createObjectURL(blob);
 
-  a.download =
-  "meigi-backup.json";
+a.download =
+“meigi-backup.json”;
 
-  a.click();
-
-});
-
-document
-.getElementById("importBtn")
-.addEventListener("click",()=>{
-
-  document
-  .getElementById("importFile")
-  .click();
+a.click();
 
 });
 
 document
-.getElementById("importFile")
-.addEventListener("change",(e)=>{
+.getElementById(“importBtn”)
+.addEventListener(“click”,()=>{
 
-  const file =
-  e.target.files[0];
-
-  if(!file) return;
-
-  const reader =
-  new FileReader();
-
-  reader.onload=()=>{
-
-    meigiData =
-    JSON.parse(reader.result);
-
-    saveData();
-
-    renderMeigi();
-
-  };
-
-  reader.readAsText(file);
+document
+.getElementById(“importFile”)
+.click();
 
 });
 
-if("serviceWorker" in navigator){
+document
+.getElementById(“importFile”)
+.addEventListener(“change”,(e)=>{
 
-  navigator.serviceWorker
-  .register("./service-worker.js");
+const file =
+e.target.files[0];
+
+if(!file) return;
+
+const reader =
+new FileReader();
+
+reader.onload=()=>{
+
+meigiData =
+JSON.parse(reader.result);
+saveData();
+renderMeigi();
+
+};
+
+reader.readAsText(file);
+
+});
+
+if(“serviceWorker” in navigator){
+
+navigator.serviceWorker
+.register(”./service-worker.js”);
 
 }
-function editMeigi(index){
-
-  const item = meigiData[index];
-
-  item.name =
-  prompt("名前",item.name);
-
-  item.memberNo =
-  prompt("会員番号",item.memberNo);
-
-  item.joinDate =
-  prompt("入会日",item.joinDate);
-
-  item.memo =
-  prompt("メモ",item.memo || "");
-
-  saveData();
-
-  renderMeigi();
-
-}
-
