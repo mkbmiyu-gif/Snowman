@@ -1,6 +1,12 @@
-hid let meigiData =JSON.parse(localStorage.getItem("meigiData")) || [];
+　　　let meigiData =
+JSON.parse(localStorage.getItem("meigiData")) || [];
 
-function saveData() {localStorage.setItem("meigiData",JSON.stringify(meigiData));}
+function saveData() {
+  localStorage.setItem(
+    "meigiData",
+    JSON.stringify(meigiData)
+  );
+}
 
 function renderMeigi() {
 
