@@ -1,0 +1,9 @@
+{
+  "name": "名義手帳 Pro",
+  "short_name": "名義手帳",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#f2f2f7",
+  "theme_color": "#ffffff",
+  "icons": []
+}
