@@ -19,8 +19,7 @@ const card =
 document.createElement("div");
 
 card.className = "card";
-
-card.innerHTML = `
+  card.innerHTML = `
   <h2>${item.name}</h2>
 
   <p>会員番号 ${item.memberNo || ""}</p>
@@ -28,6 +27,20 @@ card.innerHTML = `
   <p>入会 ${item.joinDate || ""}</p>
 
   <p>メモ ${item.memo || ""}</p>
+
+  <h3>公演履歴</h3>
+
+  ${(item.histories || []).map(history => `
+    <div class="history">
+      <p>${history.title}</p>
+      <p>${history.venue}</p>
+      <p>${history.date}</p>
+    </div>
+  `).join("")}
+
+  <button onclick="addHistory(${index})">
+    履歴追加
+  </button>
 
   <button onclick="editMeigi(${index})">
     編集
@@ -169,3 +182,31 @@ navigator.serviceWorker.register("./service-worker.js");
 
 }
 renderMeigi();
+function addHistory(index){
+
+const title =
+prompt("公演名");
+
+if(!title) return;
+
+const venue =
+prompt("会場");
+
+const date =
+prompt("日付");
+
+if(!meigiData[index].histories){
+meigiData[index].histories = [];
+}
+
+meigiData[index].histories.push({
+title,
+venue,
+date
+});
+
+saveData();
+
+renderMeigi();
+
+}
