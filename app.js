@@ -1,63 +1,46 @@
-const PASSCODE = “0517”;
+const PASSCODE = "0517";
 
-const lockScreen = document.getElementById(“lockScreen”);
-const app = document.getElementById(“app”);
+const lockScreen = document.getElementById("lockScreen");const app = document.getElementById("app");
 
-function unlockApp() {
-const pin = document.getElementById(“pinInput”).value;
+function unlockApp() {const pin = document.getElementById("pinInput").value;
 
-if (pin === PASSCODE) {
-lockScreen.classList.add(“hidden”);
-app.classList.remove(“hidden”);
-renderMeigi();
-} else {
-alert(“パスコードが違います”);
-}
-}
+if (pin === PASSCODE) {lockScreen.classList.add("hidden");app.classList.remove("hidden");renderMeigi();} else {alert("パスコードが違います");}}
 
-let meigiData =
-JSON.parse(localStorage.getItem(“meigiData”)) || [];
+let meigiData =JSON.parse(localStorage.getItem("meigiData")) || [];
 
-function saveData() {
-localStorage.setItem(
-“meigiData”,
-JSON.stringify(meigiData)
-);
-}
+function saveData() {localStorage.setItem("meigiData",JSON.stringify(meigiData));}
 
 function renderMeigi() {
 
-const list =
-document.getElementById(“meigiList”);
+const list =document.getElementById("meigiList");
 
-list.innerHTML = “”;
+list.innerHTML = "";
 
 meigiData.forEach((item,index)=>{
 
 const card =
 document.createElement("div");
+
 card.className = "card";
+
 card.innerHTML = `
   <h2>${item.name}</h2>
-  <p>
-  会員番号
-  ${item.memberNo || ""}
-  </p>
-  <p>
-  入会
-  ${item.joinDate || ""}
-  </p>
-  <p>
-  メモ
-  ${item.memo || ""}
-  </p>
+
+  <p>会員番号 ${item.memberNo || ""}</p>
+
+  <p>入会 ${item.joinDate || ""}</p>
+
+  <p>メモ ${item.memo || ""}</p>
+
   <button onclick="editMeigi(${index})">
-  編集
+    編集
   </button>
+
   <button onclick="deleteMeigi(${index})">
-  削除
+    削除
   </button>
 `;
+
 list.appendChild(card);
 
 });
@@ -68,17 +51,13 @@ function editMeigi(index){
 
 const item = meigiData[index];
 
-item.name =
-prompt(“名前”, item.name);
+item.name =prompt("名前", item.name);
 
-item.memberNo =
-prompt(“会員番号”, item.memberNo);
+item.memberNo =prompt("会員番号", item.memberNo);
 
-item.joinDate =
-prompt(“入会日”, item.joinDate);
+item.joinDate =prompt("入会日", item.joinDate);
 
-item.memo =
-prompt(“メモ”, item.memo || “”);
+item.memo =prompt("メモ", item.memo || "");
 
 saveData();
 
@@ -88,9 +67,7 @@ renderMeigi();
 
 function deleteMeigi(index){
 
-if(!confirm(“削除しますか？”)){
-return;
-}
+if(!confirm("削除しますか？")){return;}
 
 meigiData.splice(index,1);
 
@@ -100,23 +77,17 @@ renderMeigi();
 
 }
 
-document
-.getElementById(“addBtn”)
-.addEventListener(“click”,()=>{
+document.getElementById("addBtn").addEventListener("click",()=>{
 
-const name =
-prompt(“名前”);
+const name =prompt("名前");
 
 if(!name) return;
 
-const memberNo =
-prompt(“会員番号”);
+const memberNo =prompt("会員番号");
 
-const joinDate =
-prompt(“入会日”);
+const joinDate =prompt("入会日");
 
-const memo =
-prompt(“メモ”);
+const memo =prompt("メモ");
 
 meigiData.push({
 
@@ -134,19 +105,15 @@ renderMeigi();
 
 });
 
-document
-.getElementById(“searchInput”)
-.addEventListener(“input”,(e)=>{
+document.getElementById("searchInput").addEventListener("input",(e)=>{
 
-const keyword =
-e.target.value.toLowerCase();
+const keyword =e.target.value.toLowerCase();
 
-document
-.querySelectorAll(”.card”)
-.forEach(card=>{
+document.querySelectorAll(".card").forEach(card=>{
 
 const text =
 card.innerText.toLowerCase();
+
 card.style.display =
 text.includes(keyword)
 ? "block"
@@ -156,56 +123,41 @@ text.includes(keyword)
 
 });
 
-document
-.getElementById(“exportBtn”)
-.addEventListener(“click”,()=>{
+document.getElementById("exportBtn").addEventListener("click",()=>{
 
-const blob =
-new Blob(
-[JSON.stringify(meigiData)],
-{type:“application/json”}
-);
+const blob =new Blob([JSON.stringify(meigiData)],{type:"application/json"});
 
-const a =
-document.createElement(“a”);
+const a =document.createElement("a");
 
-a.href =
-URL.createObjectURL(blob);
+a.href =URL.createObjectURL(blob);
 
-a.download =
-“meigi-backup.json”;
+a.download ="meigi-backup.json";
 
 a.click();
 
 });
 
-document
-.getElementById(“importBtn”)
-.addEventListener(“click”,()=>{
+document.getElementById("importBtn").addEventListener("click",()=>{
 
-document
-.getElementById(“importFile”)
-.click();
+document.getElementById("importFile").click();
 
 });
 
-document
-.getElementById(“importFile”)
-.addEventListener(“change”,(e)=>{
+document.getElementById("importFile").addEventListener("change",(e)=>{
 
-const file =
-e.target.files[0];
+const file =e.target.files[0];
 
 if(!file) return;
 
-const reader =
-new FileReader();
+const reader =new FileReader();
 
-reader.onload=()=>{
+reader.onload = ()=>{
 
 meigiData =
 JSON.parse(reader.result);
+
 saveData();
+
 renderMeigi();
 
 };
@@ -214,9 +166,8 @@ reader.readAsText(file);
 
 });
 
-if(“serviceWorker” in navigator){
+if("serviceWorker" in navigator){
 
-navigator.serviceWorker
-.register(”./service-worker.js”);
+navigator.serviceWorker.register("./service-worker.js");
 
 }
