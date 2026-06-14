@@ -1,6 +1,4 @@
-alert("app.js loaded");
-
-const PASSCODE = "0517";
+　　　　PASSCODE = "0517";
 
 const lockScreen = document.getElementById("lockScreen");
 const app = document.getElementById("app");
@@ -94,18 +92,36 @@ document
   const joinDate =
   prompt("入会日");
 
+  const memo =
+prompt("メモ");
   meigiData.push({
 
     name,
     memberNo,
     joinDate,
+    　memo,
     histories:[]
 
   });
 
   saveData();
+  <p>
+入会
+${item.joinDate || ""}
+</p>
 
-  renderMeigi();
+<p>
+メモ
+${item.memo || ""}
+</p>
+
+<button onclick="editMeigi(${index})">
+編集
+</button>
+
+<button onclick="deleteMeigi(${index})">
+削除
+</button>
 
 });
 
@@ -198,3 +214,25 @@ if("serviceWorker" in navigator){
   .register("./service-worker.js");
 
 }
+function editMeigi(index){
+
+  const item = meigiData[index];
+
+  item.name =
+  prompt("名前",item.name);
+
+  item.memberNo =
+  prompt("会員番号",item.memberNo);
+
+  item.joinDate =
+  prompt("入会日",item.joinDate);
+
+  item.memo =
+  prompt("メモ",item.memo || "");
+
+  saveData();
+
+  renderMeigi();
+
+}
+
