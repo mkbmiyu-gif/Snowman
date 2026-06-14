@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名義手帳 Pro</title>
+
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="名義手帳">
+
+</head>
+
+<body>
+
+<div id="lockScreen" class="lock-screen">
+  <div class="lock-card">
+    <h1>🔒 名義手帳 Pro</h1>
+
+    <input
+      type="password"
+      id="pinInput"
+      placeholder="パスコード"
+    >
+
+    <button onclick="unlockApp()">
+      ロック解除
+    </button>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+
+<header>
+  <h1>❄️ 名義手帳 Pro</h1>
+
+  <input
+    type="search"
+    id="searchInput"
+    placeholder="公演名・会場・コメント検索"
+  >
+</header>
+
+<main>
+
+<section id="meigiList">
+</section>
+
+<button id="addBtn">
+＋ 名義追加
+</button>
+
+<section class="backup">
+
+<button id="exportBtn">
+JSONエクスポート
+</button>
+
+<button id="importBtn">
+JSONインポート
+</button>
+
+<input
+type="file"
+id="importFile"
+accept=".json"
+hidden>
+
+</section>
+
+</main>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
