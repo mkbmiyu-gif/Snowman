@@ -1,12 +1,8 @@
-const PASSCODE = "0517";
+const app = document.getElementById("app");
 
-const lockScreen = document.getElementById("lockScreen");const app = document.getElementById("app");
+app.classList.remove("hidden");
 
-function unlockApp() {const pin = document.getElementById("pinInput").value;
-
-if (pin === PASSCODE) {lockScreen.classList.add("hidden");app.classList.remove("hidden");renderMeigi();} else {alert("パスコードが違います");}}
-
-let meigiData =JSON.parse(localStorage.getItem("meigiData")) || [];
+　　　　let meigiData =JSON.parse(localStorage.getItem("meigiData")) || [];
 
 function saveData() {localStorage.setItem("meigiData",JSON.stringify(meigiData));}
 
