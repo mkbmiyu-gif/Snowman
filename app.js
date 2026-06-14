@@ -29,15 +29,19 @@ card.className = "card";
   <p>メモ ${item.memo || ""}</p>
 
   <h3>公演履歴</h3>
+${(item.histories || []).map((history,hIndex) => `
+  <div class="history">
+    <p>${history.title}</p>
+    <p>${history.venue}</p>
+    <p>${history.date}</p>
 
-  ${(item.histories || []).map(history => `
-    <div class="history">
-      <p>${history.title}</p>
-      <p>${history.venue}</p>
-      <p>${history.date}</p>
-    </div>
-  `).join("")}
-
+    <button
+      onclick="deleteHistory(${index},${hIndex})">
+      履歴削除
+    </button>
+  </div>
+`).join("")}
+ 
   <button onclick="addHistory(${index})">
     履歴追加
   </button>
@@ -210,3 +214,20 @@ saveData();
 renderMeigi();
 
 }
+function deleteHistory(meigiIndex, historyIndex){
+
+if(!confirm("履歴を削除しますか？")){
+return;
+}
+
+meigiData[meigiIndex].histories.splice(
+historyIndex,
+1
+);
+
+saveData();
+
+renderMeigi();
+
+}
+
