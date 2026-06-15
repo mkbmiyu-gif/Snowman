@@ -213,3 +213,20 @@ button[onclick*="deleteMeigi"]{
   margin-top:30px;
   gap:16px;
 }
+.card-top{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  margin-bottom:20px;
+}
+
+.icon{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  background:#e8f4ff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:28px;
+}
