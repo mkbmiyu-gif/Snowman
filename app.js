@@ -32,8 +32,8 @@ card.className = "card";
 <p>入会 ${item.joinDate || ""}</p>
 
 <p>メモ ${item.memo || ""}</p>
-  　　　　　
-  <h3>公演履歴</h3>
+
+      <h3>履歴</h3>
 ${(item.histories || []).map((history,hIndex) => `
   <div class="history">
     <p>${history.title}</p>
