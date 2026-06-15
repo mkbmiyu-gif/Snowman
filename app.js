@@ -28,10 +28,11 @@ card.className = "card";
     <p>${item.memberNo || ""}</p>
   </div>
 </div>
+<div class="meta">
+  <span>${item.joinDate || "-"}</span>
+  <span>${item.memo || "-"}</span>
+</div>
 
-<p>入会 ${item.joinDate || ""}</p>
-
-<p>メモ ${item.memo || ""}</p>
 
       <h3>履歴</h3>
 ${(item.histories || []).map((history,hIndex) => `
