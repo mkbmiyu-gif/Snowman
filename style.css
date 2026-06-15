@@ -1,4 +1,4 @@
- body{
+body{
 margin:0;
 padding:0;
 font-family:-apple-system,BlinkMacSystemFont,sans-serif;
@@ -88,28 +88,128 @@ gap:12px;
 margin-top:20px;
 }
 
-#addBtn{
+##addBtn{
 margin-top:20px;
 }
 
-.history{
-background:#f7f7f7;
-border:1px solid #e5e5e5;
-border-radius:12px;
-padding:12px;
-margin-bottom:12px;
+  .history{
+  background:#f7f7f7;
+  border:1px solid #e5e5e5;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
 }
 
 .history p{
-margin:4px 0;
+  margin:4px 0;
 }
 
 .history p:first-child{
-font-weight:bold;
-font-size:18px;
+  font-weight:bold;
+  font-size:18px;
 }
 
 .history button{
-margin-top:8px;
-background:#ff4d4f;
+  margin-top:8px;
+  background:#ff4d4f;
+}
+
+/* ヘッダー */
+
+header{
+  background:#f2f2f7;
+  padding:24px;
+}
+
+header h1{
+  font-size:56px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+/* 検索欄 */
+
+#searchInput{
+  background:#ececef;
+  border:none;
+  border-radius:22px;
+  height:60px;
+  font-size:18px;
+  color:#333;
+}
+
+/* 名義カード */
+
+.card{
+  background:#fff;
+  border-radius:32px;
+  padding:28px;
+  margin-bottom:20px;
+  box-shadow:none;
+}
+
+.card h2{
+  font-size:28px;
+  font-weight:800;
+  margin-bottom:20px;
+}
+
+.card p{
+  font-size:18px;
+  line-height:1.8;
+  margin:10px 0;
+}
+
+/* 公演履歴タイトル */
+
+.card h3{
+  margin-top:30px;
+  margin-bottom:16px;
+  font-size:22px;
+  font-weight:800;
+}
+
+/* 履歴 */
+
+.history{
+  background:#fafafa;
+  border:none;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:12px;
+}
+
+.history p:first-child{
+  font-size:20px;
+  font-weight:700;
+}
+
+/* ボタン */
+
+.card button{
+  margin-top:10px;
+}
+
+button{
+  height:60px;
+  border-radius:24px;
+  font-size:20px;
+  font-weight:600;
+}
+
+/* 削除ボタン */
+
+.history button{
+  background:#ff3b30;
+}
+
+button[onclick*="deleteMeigi"]{
+  background:#ff3b30;
+}
+
+/* 下部ボタン */
+
+.backup{
+  margin-top:30px;
+  gap:16px;
 }
