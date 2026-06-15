@@ -20,14 +20,18 @@ document.createElement("div");
 
 card.className = "card";
   card.innerHTML = `
-  <h2>${item.name}</h2>
-
-  <p>会員番号 ${item.memberNo || ""}</p>
+  <div class="card-top">
+    <div class="icon">❄️</div>
+    <div>
+      <h2>${item.name}</h2>
+      <p>会員番号 ${item.memberNo || ""}</p>
+    </div>
+  </div>
 
   <p>入会 ${item.joinDate || ""}</p>
 
   <p>メモ ${item.memo || ""}</p>
-
+  　　　　　
   <h3>公演履歴</h3>
 ${(item.histories || []).map((history,hIndex) => `
   <div class="history">
