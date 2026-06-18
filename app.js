@@ -149,3 +149,113 @@ document.getElementById("listPage")
 renderMeigi();
 
 }
+function addHistory(index){
+
+const title = prompt("公演名");
+
+if(!title) return;
+
+const venue = prompt("会場");
+
+const date = prompt("日付");
+
+if(!meigiData[index].histories){
+meigiData[index].histories = [];
+}
+
+meigiData[index].histories.push({
+title,
+venue,
+date
+});
+
+saveData();
+
+showDetail(index);
+
+}
+
+function deleteHistory(meigiIndex,historyIndex){
+
+if(!confirm("履歴を削除しますか？")){
+return;
+}
+
+meigiData[meigiIndex].histories.splice(
+historyIndex,
+1
+);
+
+saveData();
+
+showDetail(meigiIndex);
+
+}
+
+function editMeigi(index){
+
+const item = meigiData[index];
+
+item.name =
+prompt("名前",item.name);
+
+item.memberNo =
+prompt("会員番号",item.memberNo);
+
+item.joinDate =
+prompt("入会日",item.joinDate);
+
+item.memo =
+prompt("メモ",item.memo);
+
+saveData();
+
+showDetail(index);
+
+}
+
+function deleteMeigi(index){
+
+if(!confirm("削除しますか？")){
+return;
+}
+
+meigiData.splice(index,1);
+
+saveData();
+
+backToList();
+
+}
+
+document.getElementById("addBtn")
+.addEventListener("click",()=>{
+
+const name = prompt("名前");
+
+if(!name) return;
+
+const memberNo =
+prompt("会員番号");
+
+const joinDate =
+prompt("入会日");
+
+const memo =
+prompt("メモ");
+
+meigiData.push({
+
+name,
+memberNo,
+joinDate,
+memo,
+histories:[]
+
+});
+
+saveData();
+
+renderMeigi();
+
+});
