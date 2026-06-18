@@ -184,3 +184,198 @@ width:36px;
 height:36px;
 font-size:18px;
 }
+/* ===== 全体 ===== */
+
+body{
+background:#f7f7fa;
+color:#1c1c1e;
+font-size:14px;
+}
+
+main{
+max-width:560px;
+padding:16px;
+}
+
+
+/* ===== 名義カード ===== */
+
+.card{
+background:#fff;
+border:none;
+border-radius:28px;
+padding:18px;
+margin-bottom:14px;
+box-shadow:
+0 2px 12px rgba(0,0,0,.04);
+}
+
+
+/* ===== 上部 ===== */
+
+.card-top{
+display:flex;
+align-items:center;
+gap:14px;
+margin-bottom:12px;
+}
+
+.icon{
+width:42px;
+height:42px;
+border-radius:50%;
+background:#f1eff8;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:18px;
+}
+
+
+/* ===== 名前 ===== */
+
+.card-top h2{
+font-size:15px;
+font-weight:700;
+margin:0;
+color:#1c1c1e;
+}
+
+.card-top p{
+margin-top:2px;
+font-size:11px;
+color:#8e8e93;
+}
+
+
+/* ===== 下の情報 ===== */
+
+.meta{
+display:flex;
+justify-content:space-between;
+font-size:11px;
+color:#8e8e93;
+margin-top:10px;
+}
+
+
+/* ===== 履歴 ===== */
+
+.history{
+background:#fafafa;
+border:none;
+border-radius:18px;
+padding:14px;
+margin-bottom:10px;
+}
+
+.history p{
+margin:3px 0;
+font-size:12px;
+}
+
+.history p:first-child{
+font-size:13px;
+font-weight:700;
+color:#1c1c1e;
+}
+
+
+/* ===== ボタン ===== */
+
+button{
+
+height:38px;
+
+border:none;
+border-radius:14px;
+
+background:#f3f3f5;
+
+color:#666;
+
+font-size:12px;
+
+font-weight:600;
+
+box-shadow:none;
+}
+
+
+/* ===== 名義追加 ===== */
+
+#addBtn{
+
+height:48px;
+
+background:#ebe8f4;
+
+color:#6f58bb;
+
+font-size:14px;
+
+font-weight:700;
+
+border-radius:18px;
+
+}
+
+
+/* ===== バックアップ ===== */
+
+.backup{
+
+display:flex;
+
+gap:8px;
+
+margin-top:18px;
+
+}
+
+.backup button{
+
+width:auto;
+
+padding:0 16px;
+
+}
+
+
+/* ===== 詳細画面 ===== */
+
+#detailPage{
+
+padding-bottom:40px;
+
+}
+
+
+/* ===== 戻るボタン ===== */
+
+#detailPage button:first-child{
+
+background:none;
+
+padding:0;
+
+height:auto;
+
+color:#6f58bb;
+
+font-size:14px;
+
+margin-bottom:16px;
+
+}
+
+
+/* ===== スクロール感 ===== */
+
+body{
+
+-webkit-font-smoothing:antialiased;
+
+}
