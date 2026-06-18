@@ -141,4 +141,27 @@ color:#888;
 margin-top:4px;
 margin-bottom:10px;
 }
+.backup{
+display:flex;
+flex-direction:row;
+gap:8px;
+margin-top:16px;
+}
+
+.backup button{
+width:auto;
+padding:0 16px;
+height:32px;
+font-size:11px;
+border-radius:10px;
+background:#f1eff7;
+color:#777;
+}
+
+#addBtn{
+width:140px;
+height:40px;
+font-size:13px;
+border-radius:14px;
+}
 
