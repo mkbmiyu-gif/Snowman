@@ -213,6 +213,12 @@ align-items:flex-start;
 <p>
 入会 ${item.joinDate || ""}
 </p>
+<button class="add-history-btn"
+onclick="addHistory(${index})">
+
++
+
+</button>
 
 <div class="history-list">
 
