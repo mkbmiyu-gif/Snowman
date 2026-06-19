@@ -194,22 +194,70 @@ align-items:flex-start;
 入会 ${item.joinDate || ""}
 </p>
 
-<button
-class="add-history-btn"
-onclick="addHistory(${index})">
-
-＋
-
-</button>
-
 </div>
 
 <div class="history-list">
+
+<button
+class="add-history-btn"
+onclick="addHistory(${index})">
+＋
+</button>
 
 ${(item.histories || []).map((history,hIndex)=>`
 
 <div class="history">
 
+<div
+class="delete-area"
+onclick="deleteHistory(${index},${hIndex})">
+削除
+</div>
+
+<div class="history-content">
+
+<button
+class="edit-history-btn"
+onclick="editHistory(${index},${hIndex})">
+
+<svg width="16"
+height="16"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
+
+<path d="M12 20h9"/>
+<path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/>
+
+</svg>
+
+</button>
+
+<p>
+<strong>${history.title}</strong>
+</p>
+
+<p>${history.venue}</p>
+
+<p>${history.date}</p>
+
+<p>${history.seat || ""}</p>
+
+<p class="historyMemo">
+${history.memo || ""}
+</p>
+
+</div>
+
+</div>
+
+`).join("")}
+
+</div>
+<div class="history">
 <div
 class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
@@ -219,7 +267,6 @@ onclick="deleteHistory(${index},${hIndex})">
 </div>
 
 <div class="history-content">
-
 <button
 class="edit-history-btn"
 onclick="editHistory(${index},${hIndex})">
@@ -277,8 +324,6 @@ ${history.memo || ""}
 `;
 
 enableSwipe();
-
-}
 
 }
 function backToList() {
