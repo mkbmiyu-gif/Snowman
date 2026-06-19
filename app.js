@@ -369,7 +369,10 @@ const memberNo =
 prompt(“会員番号”);
 
 const joinDate =
-prompt(“入会日”);
+prompt(
+"入会日（YY/MM）",
+"21/01"
+);
 
 const entryCount =
 Number(
