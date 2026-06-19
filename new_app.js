@@ -368,7 +368,47 @@ function editMeigi(index) {
   showDetail(index);
 
 }
+function editHistory(meigiIndex, historyIndex){
 
+const history =
+meigiData[meigiIndex]
+.histories[historyIndex];
+
+history.title =
+prompt(
+"公演名",
+history.title
+);
+
+history.venue =
+prompt(
+"会場",
+history.venue
+);
+
+history.date =
+prompt(
+"公演日",
+history.date
+);
+
+history.seat =
+prompt(
+"座席",
+history.seat
+);
+
+history.memo =
+prompt(
+"メモ",
+history.memo || ""
+);
+
+saveData();
+
+showDetail(meigiIndex);
+
+}
 function deleteHistory(meigiIndex, historyIndex) {
 
   if (
