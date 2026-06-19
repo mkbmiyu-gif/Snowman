@@ -136,19 +136,12 @@ ${(item.histories || []).map((history,hIndex)=>`
 
 <p>${history.date}</p>
 
-<button
-style="
-width:auto;
-height:28px;
-font-size:10px;
-padding:0 12px;
-"
+<div class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
 
-削除
+🗑 削除
 
-</button>
-
+</div>
 </div>
 
 `).join("")}
