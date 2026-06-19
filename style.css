@@ -55,15 +55,15 @@ align-items:flex-start;
 }
 
 .card-title h2{
-margin:0;
-font-size:30px;
+font-size:32px;
 font-weight:700;
+margin:0;
 }
 
 .card-title p{
-margin-top:8px;
 font-size:18px;
-color:#9a9aa1;
+color:#A0A0A8;
+margin-top:8px;
 }
 
 .card-top button{
@@ -84,18 +84,29 @@ font-size:18px;
 }
 
 /* 名義追加 */
-
 #addBtn{
 width:220px;
-height:96px;
+height:92px;
 border:none;
-border-radius:36px;
-background:#e5e0f4;
-color:#7058c8;
+border-radius:34px;
+
+background:#F8F0D8;
+
+color:#B59A55;
+
 font-size:28px;
 font-weight:700;
-margin-top:20px;
+
+margin-top:28px;
+
+box-shadow:
+0 4px 18px rgba(181,154,85,.10);
 }
+#addBtn:active{
+transform:scale(.97);
+background:#F3E7C9;
+}
+
 
 /* JSON */
 
@@ -105,13 +116,25 @@ margin-top:20px;
 
 #exportBtn{
 width:200px;
-height:74px;
+height:72px;
 border:none;
 border-radius:28px;
+
 background:white;
+
 font-size:18px;
 font-weight:600;
-color:#666;
+
+color:#888;
+}
+.card{
+background:white;
+border-radius:42px;
+padding:30px;
+margin-bottom:24px;
+
+box-shadow:
+0 8px 30px rgba(0,0,0,.03);
 }
 
 /* 戻る */
