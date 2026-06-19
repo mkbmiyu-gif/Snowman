@@ -33,7 +33,17 @@ displayData.sort(
 );
 
 }
+if(sort===“member”){
 
+displayData.sort(
+(a,b)=>
+(a.memberNo || “”)
+.localeCompare(
+b.memberNo || “”
+)
+);
+
+}
 if(sort===“name”){
 
 displayData.sort(
@@ -44,6 +54,7 @@ displayData.sort(
 }
 
 if(sort===“join”){
+  
 
 displayData.sort(
   (a,b)=>
