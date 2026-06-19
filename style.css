@@ -379,3 +379,23 @@ body{
 -webkit-font-smoothing:antialiased;
 
 }
+
+.menu{
+margin-top:12px;
+}
+
+.menu summary{
+list-style:none;
+cursor:pointer;
+font-size:22px;
+color:#999;
+text-align:center;
+}
+
+.menu summary::-webkit-details-marker{
+display:none;
+}
+
+.menu button{
+margin-top:8px;
+}
