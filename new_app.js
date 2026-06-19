@@ -351,14 +351,6 @@ function editMeigi(index) {
     item.joinDate
   );
 
-  item.entryCount =
-  Number(
-    prompt(
-      "応募回数",
-      item.entryCount || 0
-    )
-  );
-
   item.memo =
   prompt(
     "メモ",
