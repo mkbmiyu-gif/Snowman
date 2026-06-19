@@ -150,28 +150,24 @@ function copyMemberNo(event, memberNo) {
   alert("会員番号をコピーしました");
 
 }
-
 function showDetail(index) {
 
-  const item =
-  meigiData[index];
+const item = meigiData[index];
 
-  document
-  .getElementById("listPage")
-  .classList.add("hidden");
+document
+.getElementById("listPage")
+.classList.add("hidden");
 
-  document
-  .getElementById("detailPage")
-  .classList.remove("hidden");
+document
+.getElementById("detailPage")
+.classList.remove("hidden");
 
-  document
-  .getElementById("detailPage")
-  .innerHTML = `
+document
+.getElementById("detailPage")
+.innerHTML = `
 
 <button onclick="backToList()">
-
 ← 戻る
-
 </button>
 
 <div class="card">
@@ -189,45 +185,80 @@ align-items:flex-start;
 <p>${item.memberNo || ""}</p>
 
 </div>
-</details>
 
 </div>
+
 <div class="detail-row">
 
 <p class="join-date">
 入会 ${item.joinDate || ""}
 </p>
-<div class="history-add">
+
 <button
 class="add-history-btn"
-onclick="addHistory(${index})"
->
+onclick="addHistory(${index})">
+
 ＋
+
 </button>
+
 </div>
-${(item.histories || []).map((history,hIndex)=>`
-<div class="history-header">
-</div>
-</div>
+
 <div class="history-list">
+
 ${(item.histories || []).map((history,hIndex)=>`
 
 <div class="history">
-<div class="delete-area"
+
+<div
+class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
+
 削除
+
 </div>
 
 <div class="history-content">
+
+<button
+class="edit-history-btn"
+onclick="editHistory(${index},${hIndex})">
+
+<svg width="16"
+height="16"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
+
+<path d="M12 20h9"/>
+<path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/>
+
+</svg>
+
+</button>
+
 <p>
-<strong>${history.title}</strong>
+
+<strong>
+${history.title}
+</strong>
+
 </p>
 
-<p>${history.venue}</p>
+<p>
+${history.venue}
+</p>
 
-<p>${history.date}</p>
+<p>
+${history.date}
+</p>
 
-<p>${history.seat || ""}</p>
+<p>
+${history.seat || ""}
+</p>
 
 <p class="historyMemo">
 ${history.memo || ""}
@@ -238,11 +269,16 @@ ${history.memo || ""}
 </div>
 
 `).join("")}
+
+</div>
+
 </div>
 
 `;
 
 enableSwipe();
+
+}
 
 }
 function backToList() {
