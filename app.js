@@ -289,26 +289,7 @@ a.download =
 "meigi-backup.json";
 a.click();
 });
-document.getElementById("importBtn")
-.addEventListener("click",()=>{
-document.getElementById(
-"importFile"
-).click();
-});
-document.getElementById("importFile")
-.addEventListener("change",(e)=>{
-const file = e.target.files[0];
-if(!file) return;
-const reader =
-new FileReader();
-reader.onload = ()=>{
-meigiData =
-JSON.parse(reader.result);
-saveData();
-renderMeigi();
-};
-reader.readAsText(file);
-});
+
 if("serviceWorker" in navigator){
 navigator.serviceWorker.register(
 "./service-worker.js"
