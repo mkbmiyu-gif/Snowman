@@ -469,17 +469,12 @@ prompt(
 0
 )
 );
-
-const memo =
-prompt("メモ");
-
 meigiData.push({
 
 name,
 memberNo,
 joinDate,
 entryCount,
-memo,
 histories:[]
 
 });
