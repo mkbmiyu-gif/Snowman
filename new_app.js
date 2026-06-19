@@ -219,59 +219,17 @@ align-items:flex-start;
 ${item.memo || ""}
 </p>
 
-${(item.histories || []).map((history,hIndex)=>`
-
 <div class="history">
 
-<div
-class="delete-area"
+<div class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
-function editHistory(meigiIndex, historyIndex){
-
-const history =
-meigiData[meigiIndex]
-.histories[historyIndex];
-
-history.title =
-prompt(
-"公演名",
-history.title
-);
-
-history.venue =
-prompt(
-"会場",
-history.venue
-);
-
-history.date =
-prompt(
-"公演日",
-history.date
-);
-
-history.seat =
-prompt(
-"座席",
-history.seat
-);
-
-history.memo =
-prompt(
-"メモ",
-history.memo || ""
-);
-
-saveData();
-
-showDetail(meigiIndex);
-
-}
-
 削除
-
 </div>
+
+<div class="history-content">
+
 <button class="edit-history-btn"
+
 onclick="editHistory(${index},${hIndex})">
 
 <svg width="16" height="16"
@@ -289,39 +247,16 @@ stroke-linejoin="round">
 
 </button>
 
-<button
-onclick="editHistory(${index},${hIndex})">
+<p><strong>${history.title}</strong></p>
 
-履歴編集
+<p>${history.venue}</p>
 
-</button>
-<div class="history-content">
+<p>${history.date}</p>
 
-<p>
-<strong>
-${history.title}
-</strong>
-</p>
+<p>${history.seat || ""}</p>
 
-<p>
-${history.venue}
-</p>
-
-<p>
-${history.date}
-</p>
-
-<p>
-${history.seat || ""}
-</p>
-
-<p style="
-color:#999;
-font-size:13px;
-margin-top:8px;
-">
+<p class="historyMemo">
 ${history.memo || ""}
-</p>
 </p>
 
 </div>
