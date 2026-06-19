@@ -29,22 +29,36 @@ card.innerHTML = `
 
 <div class="card-top">
 
+card.innerHTML = `
+
+<div class="card-top">
+
 <div class="icon">❄️</div>
 
 <div>
+
 <h2>${item.name}</h2>
+
 <p>${item.memberNo || ""}</p>
+
 </div>
 
 </div>
 
 <div class="meta">
-<span>入会 ${item.joinDate || "-"}</span>
+
 <span>
-最終当選
-${lastHistory ? lastHistory.title : "なし"}
+当選回数
+${(item.histories || []).length}回
 </span>
+
+<span>
+${lastHistory ? lastHistory.title : "当選なし"}
+</span>
+
 </div>
+
+`;
 
 `;
 
