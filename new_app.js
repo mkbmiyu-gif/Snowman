@@ -267,10 +267,11 @@ ${history.memo || ""}
 </div>
 
 `).join("")}
-
 </div>
 
 `;
+
+enableSwipe();
 
 }
 function backToList() {
