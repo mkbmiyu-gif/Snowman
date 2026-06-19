@@ -210,15 +210,20 @@ align-items:flex-start;
 </details>
 
 </div>
-<p>
+<div class="detail-row">
+
+<p class="join-date">
 入会 ${item.joinDate || ""}
 </p>
+
 <button class="add-history-btn"
 onclick="addHistory(${index})">
 
 +
 
 </button>
+
+</div>
 
 <div class="history-list">
 
