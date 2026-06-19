@@ -278,15 +278,15 @@ color:#999;
 font-size:13px;
 margin-top:8px;
 }
-.history-add{
-display:flex;
-justify-content:flex-end;
-margin-bottom:18px;
-}
+.add-history-btn{
 
-.history-add button{
-width:46px;
-height:46px;
+position:absolute;
+
+top:30px;
+right:92px;
+
+width:36px;
+height:36px;
 
 border:none;
 border-radius:50%;
@@ -303,4 +303,6 @@ align-items:center;
 
 box-shadow:
 0 4px 12px rgba(0,0,0,.05);
+
+z-index:10;
 }
