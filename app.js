@@ -314,7 +314,7 @@ item.memberNo
 
 item.joinDate =
 prompt(
-“入会日”,
+“入会日（YY/MM）”,
 item.joinDate
 );
 
