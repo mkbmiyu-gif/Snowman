@@ -29,10 +29,6 @@ card.innerHTML = `
 
 <div class="card-top">
 
-card.innerHTML = `
-
-<div class="card-top">
-
 <div class="icon">❄️</div>
 
 <div>
@@ -60,8 +56,6 @@ ${lastHistory ? lastHistory.title : "当選なし"}
 
 `;
 
-`;
-
 card.onclick = ()=>{
 showDetail(index);
 };
@@ -71,7 +65,6 @@ list.appendChild(card);
 });
 
 }
-
 function showDetail(index){
 
 const item = meigiData[index];
@@ -95,8 +88,11 @@ document.getElementById("detailPage").innerHTML = `
 <div class="icon">❄️</div>
 
 <div>
+
 <h2>${item.name}</h2>
+
 <p>${item.memberNo || ""}</p>
+
 </div>
 
 </div>
@@ -134,9 +130,7 @@ onclick="deleteHistory(${index},${hIndex})">
 
 <details class="menu">
 
-<summary>
-⋯
-</summary>
+<summary>⋯</summary>
 
 <button onclick="editMeigi(${index})">
 編集
@@ -275,6 +269,7 @@ saveData();
 renderMeigi();
 
 });
+
 document.getElementById("exportBtn")
 .addEventListener("click",()=>{
 
