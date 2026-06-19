@@ -399,3 +399,38 @@ display:none;
 .menu button{
 margin-top:8px;
 }
+.history{
+position:relative;
+overflow:hidden;
+}
+
+.history-content{
+background:#fafafe;
+border-radius:16px;
+padding:14px;
+transition:.3s;
+}
+
+.delete-area{
+position:absolute;
+top:0;
+right:-90px;
+width:90px;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#F7E8EC;
+color:#B86B7B;
+font-size:12px;
+font-weight:700;
+border-radius:16px;
+}
+
+.history.swiped .history-content{
+transform:translateX(-90px);
+}
+
+.history.swiped .delete-area{
+right:0;
+}
