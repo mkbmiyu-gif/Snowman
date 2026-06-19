@@ -24,18 +24,19 @@ function renderMeigi() {
 
     const lastHistory =
     (item.histories && item.histories.length)
-    ? item.histories[item.histories.length-1]
+    ? item.histories[item.histories.length - 1]
     : null;
 
     card.innerHTML = `
 
     <div class="card-top">
 
-      <div class="icon">❄️</div>
+      <div class="card-title">
 
-      <div>
         <h2>${item.name}</h2>
+
         <p>${item.memberNo || ""}</p>
+
       </div>
 
     </div>
@@ -66,7 +67,8 @@ function renderMeigi() {
 
 function showDetail(index){
 
-  const item = meigiData[index];
+  const item =
+  meigiData[index];
 
   document.getElementById("listPage")
   .classList.add("hidden");
@@ -78,7 +80,9 @@ function showDetail(index){
   .innerHTML = `
 
 <button onclick="backToList()">
+
 ← 戻る
+
 </button>
 
 <div class="card">
@@ -89,14 +93,11 @@ justify-content:space-between;
 align-items:flex-start;
 ">
 
-<div class="card-top">
+<div class="card-title">
 
-<div class="icon">❄️</div>
-
-<div>
 <h2>${item.name}</h2>
+
 <p>${item.memberNo || ""}</p>
-</div>
 
 </div>
 
@@ -105,24 +106,38 @@ align-items:flex-start;
 <summary>⋯</summary>
 
 <button onclick="addHistory(${index})">
+
 ＋履歴追加
+
 </button>
 
 <button onclick="editMeigi(${index})">
+
 編集
+
 </button>
 
 <button onclick="deleteMeigi(${index})">
+
 削除
+
 </button>
 
 </details>
 
 </div>
 
-<p>入会 ${item.joinDate || ""}</p>
+<p>
 
-<p>${item.memo || ""}</p>
+入会 ${item.joinDate || ""}
+
+</p>
+
+<p>
+
+${item.memo || ""}
+
+</p>
 
 <h3>履歴</h3>
 
@@ -139,11 +154,23 @@ onclick="deleteHistory(${index},${hIndex})">
 
 <div class="history-content">
 
-<p><strong>${history.title}</strong></p>
+<p>
 
-<p>${history.venue}</p>
+<strong>${history.title}</strong>
 
-<p>${history.date}</p>
+</p>
+
+<p>
+
+${history.venue}
+
+</p>
+
+<p>
+
+${history.date}
+
+</p>
 
 </div>
 
@@ -289,7 +316,8 @@ document.getElementById("addBtn")
 document.getElementById("exportBtn")
 .addEventListener("click",()=>{
 
-  const blob = new Blob(
+  const blob =
+  new Blob(
     [JSON.stringify(meigiData)],
     {
       type:"application/json"
@@ -316,66 +344,57 @@ if("serviceWorker" in navigator){
   );
 
 }
+
 function enableSwipe(){
 
-  document.querySelectorAll(".history")
+  document
+  .querySelectorAll(".history")
   .forEach(card=>{
 
     let startX = 0;
 
-    card.addEventListener("touchstart",(e)=>{
+    card.addEventListener(
+      "touchstart",
+      e=>{
 
-      startX =
-      e.touches[0].clientX;
-
-    });
-
-    card.addEventListener("touchmove",(e)=>{
-
-      const moveX =
-      e.touches[0].clientX;
-
-      const diff =
-      startX - moveX;
-
-      if(diff > 40){
-
-        document
-        .querySelectorAll(".history")
-        .forEach(h=>
-          h.classList.remove("swiped")
-        );
-
-        card.classList.add("swiped");
+        startX =
+        e.touches[0].clientX;
 
       }
+    );
 
-      if(diff < -40){
+    card.addEventListener(
+      "touchmove",
+      e=>{
 
-        card.classList.remove("swiped");
+        const moveX =
+        e.touches[0].clientX;
+
+        const diff =
+        startX - moveX;
+
+        if(diff > 40){
+
+          document
+          .querySelectorAll(".history")
+          .forEach(h=>
+            h.classList.remove("swiped")
+          );
+
+          card.classList.add("swiped");
+
+        }
+
+        if(diff < -40){
+
+          card.classList.remove("swiped");
+
+        }
 
       }
-
-    });
+    );
 
   });
-
-  document.addEventListener(
-    "touchstart",
-    (e)=>{
-
-      if(!e.target.closest(".history")){
-
-        document
-        .querySelectorAll(".history")
-        .forEach(h=>
-          h.classList.remove("swiped")
-        );
-
-      }
-
-    }
-  );
 
 }
 
