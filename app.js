@@ -517,3 +517,9 @@ card.classList.remove(
 }
 
 renderMeigi();
+document
+.getElementById("sortSelect")
+?.addEventListener(
+"change",
+renderMeigi
+);
