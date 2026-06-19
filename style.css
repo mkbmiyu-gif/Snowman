@@ -286,3 +286,34 @@ box-shadow:
 0 4px 12px rgba(0,0,0,.05);
 
 }
+.history-list{
+position:relative;
+padding-top:20px;
+}
+
+.add-history-btn{
+position:absolute;
+top:-12px;
+right:0;
+
+width:42px;
+height:42px;
+
+border:none;
+border-radius:50%;
+
+background:#F8F0D8;
+color:#B59A55;
+
+font-size:28px;
+font-weight:300;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+box-shadow:
+0 4px 12px rgba(0,0,0,.05);
+
+z-index:10;
+}
