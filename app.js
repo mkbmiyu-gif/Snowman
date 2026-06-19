@@ -94,7 +94,7 @@ const lastHistory =
 winCount
 ?
 item.histories[
-  winCount-1
+  winCount - 1
 ]
 :
 null;
@@ -102,9 +102,7 @@ card.innerHTML = `
 <div class="card-top">
   <div class="card-title">
     <h2>${item.name}</h2>
-    <p>
-    ${item.memberNo || ""}
-    </p>
+    <p>${item.memberNo || ""}</p>
   </div>
 </div>
 <div class="meta">
@@ -158,7 +156,9 @@ document
 .innerHTML = `
 
 <button onclick="backToList()">
+
 ← 戻る
+
 </button>
 <div class="card">
 <div style="
@@ -175,31 +175,48 @@ ${item.memberNo || ""}
 <details class="menu">
 <summary>⋯</summary>
 <button onclick="addHistory(${index})">
+
 ＋履歴追加
+
 </button>
 <button onclick="editMeigi(${index})">
+
 編集
+
 </button>
 <button onclick="deleteMeigi(${index})">
+
 削除
+
 </button>
 </details>
 </div>
 <p>
-入会 ${item.joinDate || ""}
+
+入会 ${item.joinDate || “”}
+
 </p>
 <p>
+
 応募回数 ${item.entryCount || 0}回
+
 </p>
 <p>
-${item.memo || ""}
+
+${item.memo || “”}
+
 </p>
-<h3>履歴</h3>
+<h3>
+
+履歴
+
+</h3>
 
 ${(item.histories || []).map((history,hIndex)=>`
 
 <div class="history">
-<div class="delete-area"
+<div
+class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
 
 削除
@@ -208,17 +225,25 @@ onclick="deleteHistory(${index},${hIndex})">
 <div class="history-content">
 <p>
 <strong>
+
 ${history.title}
+
 </strong>
 </p>
 <p>
+
 ${history.venue}
+
 </p>
 <p>
+
 ${history.date}
+
 </p>
 <p>
-${history.seat || ""}
+
+${history.seat || “”}
+
 </p>
 </div>
 </div>
@@ -283,7 +308,6 @@ saveData();
 showDetail(index);
 
 }
-
 function editMeigi(index){
 
 const item =
@@ -326,6 +350,7 @@ saveData();
 showDetail(index);
 
 }
+
 function deleteHistory(meigiIndex,historyIndex){
 
 if(
@@ -334,8 +359,9 @@ if(
 return;
 }
 
-meigiData[meigiIndex]
-.histories.splice(
+meigiData[
+meigiIndex
+].histories.splice(
 historyIndex,
 1
 );
@@ -354,10 +380,7 @@ if(
 return;
 }
 
-meigiData.splice(
-index,
-1
-);
+meigiData.splice(index,1);
 
 saveData();
 
