@@ -286,3 +286,60 @@ navigator.serviceWorker.register(
 );
 }
 renderMeigi();
+document.addEventListener(“touchstart”,(e)=>{
+
+const history =
+e.target.closest(”.history”);
+
+if(!history) return;
+
+history.startX =
+e.touches[0].clientX;
+
+});
+
+document.addEventListener(“touchmove”,(e)=>{
+
+const history =
+e.target.closest(”.history”);
+
+if(!history || history.startX===undefined) return;
+
+const moveX =
+e.touches[0].clientX;
+
+const diff =
+moveX-history.startX;
+
+if(diff<-30){
+
+history.querySelector(
+“.history-content”
+).style.transform =
+“translateX(-80px)”;
+
+}
+
+if(diff>30){
+
+history.querySelector(
+“.history-content”
+).style.transform =
+“translateX(0px)”;
+
+}
+
+});
+
+document.addEventListener(“touchend”,()=>{
+
+document.querySelectorAll(
+“.history”
+).forEach(history=>{
+
+history.startX =
+undefined;
+
+});
+
+});
