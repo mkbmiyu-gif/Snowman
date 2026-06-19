@@ -129,21 +129,18 @@ align-items:flex-start;
 ${(item.histories || []).map((history,hIndex)=>`
 
 <div class="history">
-
+<div class="history-content">
 <p><strong>${history.title}</strong></p>
-
 <p>${history.venue}</p>
-
 <p>${history.date}</p>
-
+</div>
 <div class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
 
-🗑 削除
+削除
 
 </div>
 </div>
-
 `).join("")}
 
 </div>
