@@ -219,6 +219,8 @@ align-items:flex-start;
 ${item.memo || ""}
 </p>
 
+${(item.histories || []).map((history,hIndex)=>`
+
 <div class="history">
 
 <div class="delete-area"
@@ -229,7 +231,6 @@ onclick="deleteHistory(${index},${hIndex})">
 <div class="history-content">
 
 <button class="edit-history-btn"
-
 onclick="editHistory(${index},${hIndex})">
 
 <svg width="16" height="16"
@@ -247,7 +248,9 @@ stroke-linejoin="round">
 
 </button>
 
-<p><strong>${history.title}</strong></p>
+<p>
+<strong>${history.title}</strong>
+</p>
 
 <p>${history.venue}</p>
 
@@ -268,8 +271,6 @@ ${history.memo || ""}
 </div>
 
 `;
-
-  enableSwipe();
 
 }
 function backToList() {
