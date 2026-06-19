@@ -488,3 +488,528 @@ renderMeigi
 );
 
 renderMeigi();
+
+```javascript
+function showDetail(index){
+
+const item =
+meigiData[index];
+
+document
+.getElementById("listPage")
+.classList.add("hidden");
+
+document
+.getElementById("detailPage")
+.classList.remove("hidden");
+
+document
+.getElementById("detailPage")
+.innerHTML = `
+
+<button onclick="backToList()">
+← 戻る
+</button>
+
+<div class="card">
+
+<div class="card-title">
+
+<h2>
+${item.name}
+</h2>
+
+<p>
+${item.memberNo || ""}
+</p>
+
+</div>
+
+
+<div class="detail-row">
+
+<p class="join-date">
+
+入会
+${item.joinDate || ""}
+
+</p>
+
+<button
+class="add-history-btn"
+onclick="addHistory(${index})"
+>
+
+＋
+
+</button>
+
+</div>
+
+
+<div class="history-list">
+
+${(item.histories || []).map(
+(history,hIndex)=>`
+
+<div class="history">
+
+<div
+class="delete-area"
+onclick="
+deleteHistory(
+${index},
+${hIndex}
+)
+">
+
+削除
+
+</div>
+
+
+<div class="history-content">
+
+<button
+class="edit-history-btn"
+onclick="
+editHistory(
+${index},
+${hIndex}
+)
+">
+
+<svg
+width="16"
+height="16"
+viewBox="0 0 24 24"
+fill="none"
+stroke="currentColor"
+stroke-width="2"
+stroke-linecap="round"
+stroke-linejoin="round">
+
+<path d="M12 20h9"/>
+<path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/>
+
+</svg>
+
+</button>
+
+
+<p>
+
+<strong>
+${history.title}
+</strong>
+
+</p>
+
+<p>
+${history.venue}
+</p>
+
+<p>
+${history.date}
+</p>
+
+<p>
+${history.seat || ""}
+</p>
+
+<p class="historyMemo">
+
+${history.memo || ""}
+
+</p>
+
+</div>
+
+</div>
+
+`
+).join("")}
+
+</div>
+
+</div>
+
+`;
+
+enableSwipe();
+
+}
+
+
+
+function backToList(){
+
+document
+.getElementById("detailPage")
+.classList.add("hidden");
+
+document
+.getElementById("listPage")
+.classList.remove("hidden");
+
+renderMeigi();
+
+}
+```
+
+```javascript
+function addHistory(index){
+
+const title =
+prompt("公演名");
+
+if(!title) return;
+
+const venue =
+prompt("会場");
+
+const date =
+prompt("公演日");
+
+const seat =
+prompt("座席");
+
+const memo =
+prompt("メモ");
+
+if(
+!meigiData[index].histories
+){
+
+meigiData[index].histories = [];
+
+}
+
+meigiData[index].histories.push({
+
+title,
+venue,
+date,
+seat,
+memo
+
+});
+
+saveData();
+
+showDetail(index);
+
+}
+
+
+
+function editMeigi(index){
+
+const item =
+meigiData[index];
+
+item.name =
+prompt(
+"名前",
+item.name
+);
+
+item.memberNo =
+prompt(
+"会員番号",
+item.memberNo
+);
+
+item.joinDate =
+prompt(
+"入会日（YY/MM）",
+item.joinDate
+);
+
+saveData();
+
+showDetail(index);
+
+}
+
+
+
+function editHistory(
+meigiIndex,
+historyIndex
+){
+
+const history =
+meigiData[meigiIndex]
+.histories[historyIndex];
+
+history.title =
+prompt(
+"公演名",
+history.title
+);
+
+history.venue =
+prompt(
+"会場",
+history.venue
+);
+
+history.date =
+prompt(
+"公演日",
+history.date
+);
+
+history.seat =
+prompt(
+"座席",
+history.seat
+);
+
+history.memo =
+prompt(
+"メモ",
+history.memo || ""
+);
+
+saveData();
+
+showDetail(
+meigiIndex
+);
+
+}
+
+
+
+function deleteHistory(
+meigiIndex,
+historyIndex
+){
+
+if(
+!confirm(
+"履歴を削除しますか？"
+)
+){
+return;
+}
+
+meigiData[
+meigiIndex
+]
+.histories.splice(
+historyIndex,
+1
+);
+
+saveData();
+
+showDetail(
+meigiIndex
+);
+
+}
+
+
+
+function deleteMeigi(index){
+
+if(
+!confirm(
+"名義を削除しますか？"
+)
+){
+return;
+}
+
+meigiData.splice(
+index,
+1
+);
+
+saveData();
+
+backToList();
+
+}
+```
+
+```javascript
+document
+.getElementById("addBtn")
+.addEventListener(
+"click",
+()=>{
+
+const name =
+prompt("名前");
+
+if(!name) return;
+
+const memberNo =
+prompt("会員番号");
+
+const joinDate =
+prompt(
+"入会日（YY/MM）",
+"21/01"
+);
+
+const entryCount =
+Number(
+prompt(
+"応募回数",
+0
+)
+);
+
+meigiData.push({
+
+name,
+memberNo,
+joinDate,
+entryCount,
+histories:[]
+
+});
+
+saveData();
+
+renderMeigi();
+
+}
+);
+
+
+
+document
+.getElementById("exportBtn")
+.addEventListener(
+"click",
+()=>{
+
+const blob =
+new Blob(
+[
+JSON.stringify(
+meigiData
+)
+],
+{
+type:
+"application/json"
+}
+);
+
+const a =
+document.createElement("a");
+
+a.href =
+URL.createObjectURL(blob);
+
+a.download =
+"meigi-backup.json";
+
+a.click();
+
+}
+);
+
+
+
+if(
+"serviceWorker"
+in navigator
+){
+
+navigator
+.serviceWorker
+.register(
+"./service-worker.js"
+);
+
+}
+
+
+
+function enableSwipe(){
+
+document
+.querySelectorAll(
+".history"
+)
+.forEach(card=>{
+
+let startX = 0;
+
+card.addEventListener(
+"touchstart",
+e=>{
+
+startX =
+e.touches[0].clientX;
+
+}
+);
+
+card.addEventListener(
+"touchmove",
+e=>{
+
+const moveX =
+e.touches[0].clientX;
+
+const diff =
+startX - moveX;
+
+if(diff > 40){
+
+document
+.querySelectorAll(
+".history"
+)
+.forEach(
+h=>
+h.classList.remove(
+"swiped"
+)
+);
+
+card.classList.add(
+"swiped"
+);
+
+}
+
+if(diff < -40){
+
+card.classList.remove(
+"swiped"
+);
+
+}
+
+}
+);
+
+});
+
+}
+
+
+
+document
+.getElementById(
+"sortSelect"
+)
+?.addEventListener(
+"change",
+renderMeigi
+);
+
+
+
+renderMeigi();
+```
