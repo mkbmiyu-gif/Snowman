@@ -240,10 +240,6 @@ align-items:center;
 color:#aaa;
 }
 
-.add-history-btn{
-position:absolute;
-top:30px;
-right:92px;
 
 width:36px;
 height:36px;
@@ -266,20 +262,6 @@ box-shadow:
 
 z-index:10;
 }
-.detail-row{
-display:flex;
-justify-content:space-between;
-align-items:center;
-
-margin-top:30px;
-margin-bottom:20px;
-}
-
-.join-date{
-margin:0;
-font-size:18px;
-}
-
 .add-history-btn{
 
 width:42px;
