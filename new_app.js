@@ -119,8 +119,7 @@ function renderMeigi() {
 
 <div class="meta">
 <span>当選 ${winCount}回</span>
-<span>応募 ${entryCount}回</span>
-<span>当選率 ${rate}%</span>
+<span>${rate}%</span>
 </div>
 
 <div class="meta">
