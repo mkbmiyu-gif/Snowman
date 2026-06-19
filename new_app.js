@@ -259,6 +259,15 @@ ${history.date}
 ${history.seat || ""}
 </p>
 
+<p style="
+color:#999;
+font-size:13px;
+margin-top:8px;
+">
+${history.memo || ""}
+</p>
+</p>
+
 </div>
 
 </div>
@@ -301,6 +310,8 @@ function addHistory(index) {
 
   const seat =
   prompt("座席");
+  const memo =
+prompt("メモ");
 
   if (!meigiData[index].histories) {
 
@@ -310,10 +321,11 @@ function addHistory(index) {
 
   meigiData[index].histories.push({
 
-    title,
-    venue,
-    date,
-    seat
+title,
+venue,
+date,
+seat,
+memo
 
   });
 
