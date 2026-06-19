@@ -99,9 +99,16 @@ color:#999;
 /* 情報 */
 .meta{
 display:flex;
-justify-content:space-between;
+gap:8px;
 margin-top:14px;
-font-size:13px;
+}
+
+.meta span{
+background:#f2f2f7;
+padding:8px 12px;
+border-radius:999px;
+font-size:12px;
+font-weight:600;
 color:#666;
 }
 
