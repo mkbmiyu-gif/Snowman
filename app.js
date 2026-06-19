@@ -1,6 +1,5 @@
 let meigiData =
-JSON.parse(localStorage.getItem(“meigiData”)) || [];
-
+JSON.parse(localStorage.getItem("meigiData"))
 function saveData() {
 
 localStorage.setItem(
@@ -17,7 +16,7 @@ document.getElementById(“meigiList”);
 
 list.innerHTML = “”;
 
-let displayData = […meigiData];
+  let displayData = [...meigiData];
 
 const sort =
 document.getElementById(“sortSelect”)
@@ -33,13 +32,16 @@ displayData.sort(
 );
 
 }
-if(sort===“member”){
+
+  if(sort==="member")
 
 displayData.sort(
 (a,b)=>
-(a.memberNo || “”)
+  (a.memberNo || "")
 .localeCompare(
-b.memberNo || “”
+  b.memberNo || ""
+)
+  
 )
 );
 
@@ -58,9 +60,9 @@ if(sort===“join”){
 
 displayData.sort(
   (a,b)=>
-  (a.joinDate || "")
+  (a.joinDate || ““)
   .localeCompare(
-    b.joinDate || ""
+    b.joinDate || ””
   )
 );
 
@@ -69,8 +71,8 @@ displayData.sort(
 displayData.forEach((item)=>{
 
 const card =
-document.createElement("div");
-card.className = "card";
+document.createElement(”div”);
+card.className = ”card”;
 const winCount =
 (item.histories || []).length;
 const entryCount =
@@ -93,8 +95,8 @@ item.histories[
 :
 null;
 card.innerHTML = `
-<div class="card-top">
-  <div class="card-title">
+<div class=”card-top”>
+  <div class=“card-title“>
     <h2>${item.name}</h2>
     <p>
     ${item.memberNo || ""}
