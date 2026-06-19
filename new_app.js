@@ -112,6 +112,35 @@ function renderMeigi() {
   <button
     onclick="copyMemberNo(event,'${item.memberNo || ""}')"
   >
+    IDコピー
+  </button>
+
+</div>
+
+<div class="meta">
+<span>当選 ${winCount}回</span>
+<span>応募 ${entryCount}回</span>
+<span>当選率 ${rate}%</span>
+</div>
+
+<div class="meta">
+<span>
+${lastHistory ? lastHistory.title : "当選なし"}
+</span>
+</div>
+`;
+
+    card.onclick = () => {
+      showDetail(
+        meigiData.indexOf(item)
+      );
+    };
+
+    list.appendChild(card);
+
+  });
+
+}
 function copyMemberNo(event, memberNo) {
 
   event.stopPropagation();
