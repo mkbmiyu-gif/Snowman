@@ -239,6 +239,39 @@ align-items:center;
 
 color:#aaa;
 }
+.history{
+position:relative;
+}
+
+.add-history-btn{
+
+position:absolute;
+
+top:14px;
+right:58px;
+
+width:34px;
+height:34px;
+
+border:none;
+border-radius:50%;
+
+background:#F8F0D8;
+color:#B59A55;
+
+font-size:24px;
+font-weight:300;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+box-shadow:
+0 3px 10px rgba(0,0,0,.05);
+
+z-index:3;
+
+}
 
 .historyMemo{
 color:#999;
