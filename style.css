@@ -239,14 +239,6 @@ align-items:center;
 
 color:#aaa;
 }
-.history{
-position:relative;
-}
-.historyMemo{
-color:#999;
-font-size:13px;
-margin-top:8px;
-}
 
 .add-history-btn{
 position:absolute;
