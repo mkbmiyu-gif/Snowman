@@ -1,27 +1,27 @@
 let meigiData =
-JSON.parse(localStorage.getItem("meigiData"))
-function saveData() {
+JSON.parse(localStorage.getItem(“meigiData”)) || [];
 
+function saveData() {
 localStorage.setItem(
 “meigiData”,
 JSON.stringify(meigiData)
 );
-
 }
 
-function renderMeigi(){
+function renderMeigi() {
 
 const list =
 document.getElementById(“meigiList”);
 
 list.innerHTML = “”;
 
-  let displayData = [...meigiData];
+let displayData = […meigiData];
 
 const sort =
 document.getElementById(“sortSelect”)
 ?.value || “default”;
 
+// 当選回数順
 if(sort===“win”){
 
 displayData.sort(
@@ -33,36 +33,40 @@ displayData.sort(
 
 }
 
-  if(sort==="member")
+// 会員番号順
+if(sort===“member”){
 
 displayData.sort(
-(a,b)=>
+  (a,b)=>
   (a.memberNo || "")
-.localeCompare(
-  b.memberNo || ""
-)
-  
-)
+  .localeCompare(
+    b.memberNo || ""
+  )
 );
 
 }
+
+// 名前順
 if(sort===“name”){
 
 displayData.sort(
   (a,b)=>
-  a.name.localeCompare(b.name)
+  (a.name || "")
+  .localeCompare(
+    b.name || ""
+  )
 );
 
 }
 
+// 入会日順
 if(sort===“join”){
-  
 
 displayData.sort(
   (a,b)=>
-  (a.joinDate || ““)
+  (a.joinDate || "")
   .localeCompare(
-    b.joinDate || ””
+    b.joinDate || ""
   )
 );
 
@@ -71,8 +75,8 @@ displayData.sort(
 displayData.forEach((item)=>{
 
 const card =
-document.createElement(”div”);
-card.className = ”card”;
+document.createElement("div");
+card.className = "card";
 const winCount =
 (item.histories || []).length;
 const entryCount =
@@ -90,13 +94,13 @@ const lastHistory =
 winCount
 ?
 item.histories[
-  winCount - 1
+  winCount-1
 ]
 :
 null;
 card.innerHTML = `
-<div class=”card-top”>
-  <div class=“card-title“>
+<div class="card-top">
+  <div class="card-title">
     <h2>${item.name}</h2>
     <p>
     ${item.memberNo || ""}
@@ -182,12 +186,10 @@ ${item.memberNo || ""}
 </details>
 </div>
 <p>
-入会
-${item.joinDate || ""}
+入会 ${item.joinDate || ""}
 </p>
 <p>
-応募回数
-${item.entryCount || 0}回
+応募回数 ${item.entryCount || 0}回
 </p>
 <p>
 ${item.memo || ""}
@@ -197,8 +199,7 @@ ${item.memo || ""}
 ${(item.histories || []).map((history,hIndex)=>`
 
 <div class="history">
-<div
-class="delete-area"
+<div class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
 
 削除
@@ -217,9 +218,7 @@ ${history.venue}
 ${history.date}
 </p>
 <p>
-
-${history.seat || “”}
-
+${history.seat || ""}
 </p>
 </div>
 </div>
@@ -247,6 +246,7 @@ document
 renderMeigi();
 
 }
+
 function addHistory(index){
 
 const title =
@@ -281,30 +281,6 @@ seat
 saveData();
 
 showDetail(index);
-
-}
-
-function deleteHistory(
-meigiIndex,
-historyIndex
-){
-
-if(
-!confirm(“履歴を削除しますか？”)
-){
-return;
-}
-
-meigiData[
-meigiIndex
-].histories.splice(
-historyIndex,
-1
-);
-
-saveData();
-
-showDetail(meigiIndex);
 
 }
 
@@ -350,6 +326,25 @@ saveData();
 showDetail(index);
 
 }
+function deleteHistory(meigiIndex,historyIndex){
+
+if(
+!confirm(“履歴を削除しますか？”)
+){
+return;
+}
+
+meigiData[meigiIndex]
+.histories.splice(
+historyIndex,
+1
+);
+
+saveData();
+
+showDetail(meigiIndex);
+
+}
 
 function deleteMeigi(index){
 
@@ -359,7 +354,10 @@ if(
 return;
 }
 
-meigiData.splice(index,1);
+meigiData.splice(
+index,
+1
+);
 
 saveData();
 
@@ -383,13 +381,16 @@ prompt(“会員番号”);
 
 const joinDate =
 prompt(
-"入会日（YY/MM）",
-"21/01"
+“入会日（YY/MM）”,
+“21/01”
 );
 
 const entryCount =
 Number(
-prompt(“応募回数”)
+prompt(
+“応募回数”,
+0
+)
 );
 
 const memo =
@@ -449,7 +450,8 @@ if(
 in navigator
 ){
 
-navigator.serviceWorker
+navigator
+.serviceWorker
 .register(
 “./service-worker.js”
 );
@@ -519,9 +521,10 @@ card.classList.remove(
 }
 
 renderMeigi();
+
 document
-.getElementById("sortSelect")
+.getElementById(“sortSelect”)
 ?.addEventListener(
-"change",
+“change”,
 renderMeigi
 );
