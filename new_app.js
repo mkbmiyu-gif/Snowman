@@ -216,16 +216,8 @@ align-items:flex-start;
 </p>
 
 <p>
-応募回数 ${item.entryCount || 0}回
-</p>
-
-<p>
 ${item.memo || ""}
 </p>
-
-<h3>
-履歴
-</h3>
 
 ${(item.histories || []).map((history,hIndex)=>`
 
