@@ -215,10 +215,6 @@ align-items:flex-start;
 入会 ${item.joinDate || ""}
 </p>
 
-<p>
-${item.memo || ""}
-</p>
-
 ${(item.histories || []).map((history,hIndex)=>`
 
 <div class="history">
@@ -351,11 +347,6 @@ function editMeigi(index) {
     item.joinDate
   );
 
-  item.memo =
-  prompt(
-    "メモ",
-    item.memo
-  );
 
   saveData();
 
