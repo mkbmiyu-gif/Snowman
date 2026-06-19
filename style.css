@@ -226,75 +226,25 @@ position:absolute;
 top:12px;
 right:12px;
 
-.history-header{
-display:flex;
-justify-content:flex-end;
-margin-bottom:16px;
-}
+/* 詳細 */
+
 .detail-row{
 display:flex;
 justify-content:space-between;
 align-items:center;
-
 margin-top:24px;
-margin-bottom:20px;
+margin-bottom:18px;
 }
 
 .join-date{
 margin:0;
 font-size:18px;
+color:#777;
 }
 
-width:42px;
-height:42px;
-
-border:none;
-border-radius:50%;
-
-background:#F8F0D8;
-color:#B59A55;
-
-font-size:28px;
-font-weight:300;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-box-shadow:
-0 4px 12px rgba(0,0,0,.05);
-
-cursor:pointer;
-
-}
-width:42px;
-height:42px;
-
-border:none;
-border-radius:50%;
-
-background:#F8F0D8;
-color:#B59A55;
-
-font-size:28px;
-
-display:flex;
-justify-content:center;
-align-items:center;
-
-box-shadow:
-0 4px 12px rgba(0,0,0,.05);
-
-}
-.history-list{
-position:relative;
-padding-top:20px;
-}
+/* ＋ボタン */
 
 .add-history-btn{
-position:absolute;
-top:-12px;
-right:0;
 
 width:42px;
 height:42px;
@@ -315,5 +265,97 @@ align-items:center;
 box-shadow:
 0 4px 12px rgba(0,0,0,.05);
 
-z-index:10;
+}
+
+/* 履歴 */
+
+.history{
+position:relative;
+overflow:hidden;
+border-radius:24px;
+margin-bottom:16px;
+}
+
+.history-content{
+position:relative;
+
+background:#fafafa;
+padding:18px;
+
+border-radius:24px;
+
+transition:.25s;
+z-index:2;
+}
+
+.history-content p{
+margin:5px 0;
+font-size:15px;
+}
+
+/* 鉛筆 */
+
+.edit-history-btn{
+
+position:absolute;
+top:12px;
+right:12px;
+
+width:36px;
+height:36px;
+
+border:none;
+border-radius:50%;
+
+background:#f2f2f7;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+color:#aaa;
+
+}
+
+/* メモ */
+
+.historyMemo{
+
+margin-top:8px;
+
+font-size:13px;
+color:#999;
+
+}
+
+/* 削除 */
+
+.delete-area{
+
+position:absolute;
+top:0;
+right:0;
+
+width:100px;
+height:100%;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:#ff4b4b;
+
+color:white;
+font-weight:700;
+
+border-radius:24px;
+
+z-index:1;
+
+}
+
+.history.swiped .history-content{
+
+transform:translateX(-100px);
+
 }
