@@ -148,6 +148,7 @@ function copyMemberNo(event, memberNo) {
   navigator.clipboard.writeText(memberNo);
 
   alert("会員番号をコピーしました");
+  }
 
 function showDetail(index){
 
