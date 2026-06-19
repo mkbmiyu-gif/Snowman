@@ -129,22 +129,24 @@ onclick="deleteHistory(${index},${hIndex})">
 `).join("")}
 
 <button onclick="addHistory(${index})">
-
 ＋履歴追加
-
 </button>
 
+<details class="menu">
+
+<summary>
+⋯
+</summary>
+
 <button onclick="editMeigi(${index})">
-
 編集
-
 </button>
 
 <button onclick="deleteMeigi(${index})">
-
 削除
-
 </button>
+
+</details>
 
 </div>
 
