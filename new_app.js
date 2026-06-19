@@ -7,7 +7,6 @@ function saveData() {
     JSON.stringify(meigiData)
   );
 }
-
 function renderMeigi() {
 
   const list =
@@ -190,23 +189,6 @@ align-items:flex-start;
 <p>${item.memberNo || ""}</p>
 
 </div>
-
-<details class="menu">
-
-<summary>⋯</summary>
-
-<button onclick="addHistory(${index})">
-履歴追加
-</button>
-
-<button onclick="editMeigi(${index})">
-名義編集
-</button>
-
-<button onclick="deleteMeigi(${index})">
-名義削除
-</button>
-
 </details>
 
 </div>
@@ -216,13 +198,6 @@ align-items:flex-start;
 入会 ${item.joinDate || ""}
 </p>
 <div class="history-header">
-
-<button class="add-history-btn"
-onclick="addHistory(${index})">
-
-＋
-
-</button>
 </div>
 </div>
 <div class="history-list">
