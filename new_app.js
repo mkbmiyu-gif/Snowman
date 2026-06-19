@@ -200,11 +200,11 @@ align-items:flex-start;
 </button>
 
 <button onclick="editMeigi(${index})">
-編集
+名義編集
 </button>
 
 <button onclick="deleteMeigi(${index})">
-削除
+名義削除
 </button>
 
 </details>
@@ -226,11 +226,57 @@ ${(item.histories || []).map((history,hIndex)=>`
 <div
 class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
+function editHistory(meigiIndex, historyIndex){
+
+const history =
+meigiData[meigiIndex]
+.histories[historyIndex];
+
+history.title =
+prompt(
+"公演名",
+history.title
+);
+
+history.venue =
+prompt(
+"会場",
+history.venue
+);
+
+history.date =
+prompt(
+"公演日",
+history.date
+);
+
+history.seat =
+prompt(
+"座席",
+history.seat
+);
+
+history.memo =
+prompt(
+"メモ",
+history.memo || ""
+);
+
+saveData();
+
+showDetail(meigiIndex);
+
+}
 
 削除
 
 </div>
+<button
+onclick="editHistory(${index},${hIndex})">
 
+履歴編集
+
+</button>
 <div class="history-content">
 
 <p>
