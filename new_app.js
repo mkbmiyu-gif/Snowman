@@ -215,21 +215,7 @@ align-items:flex-start;
 <p class="join-date">
 入会 ${item.joinDate || ""}
 </p>
-
-<button class="add-history-btn"
-onclick="addHistory(${index})">
-
-+
-
-</button>
-
-</div>
-
-<div class="history-list">
-
-${(item.histories || []).map((history,hIndex)=>`
-
-<div class="history">
+<div class="history-header">
 
 <button class="add-history-btn"
 onclick="addHistory(${index})">
@@ -237,19 +223,18 @@ onclick="addHistory(${index})">
 ＋
 
 </button>
+</div>
+</div>
+<div class="history-list">
+${(item.histories || []).map((history,hIndex)=>`
 
+<div class="history">
 <div class="delete-area"
 onclick="deleteHistory(${index},${hIndex})">
 削除
 </div>
 
 <div class="history-content">
-
-<button class="edit-history-btn"
-onclick="editHistory(${index},${hIndex})">
-
-・・・
-</button>
 <p>
 <strong>${history.title}</strong>
 </p>
