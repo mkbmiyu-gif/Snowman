@@ -110,11 +110,16 @@ function renderMeigi() {
     <p>${item.memberNo || ""}</p>
   </div>
 
-  <button
-    onclick="copyMemberNo(event,'${item.memberNo || ""}')"
-  >
-    IDコピー
-  </button>
+<button
+onclick="copyMemberNo(event,'${item.memberNo || ""}')"
+style="
+background:red;
+color:white;
+padding:8px;
+"
+>
+IDコピー
+</button>
 
 </div>
 
