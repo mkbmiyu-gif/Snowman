@@ -214,3 +214,22 @@ color:#444;
 outline:none;
 }
 
+#toast{
+position:fixed;
+left:50%;
+bottom:30px;
+transform:translateX(-50%);
+background:rgba(40,40,40,0.9);
+color:#fff;
+padding:12px 20px;
+border-radius:14px;
+font-size:13px;
+opacity:0;
+pointer-events:none;
+transition:0.3s;
+}
+
+#toast.show{
+opacity:1;
+}
+
