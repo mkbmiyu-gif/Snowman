@@ -1,20 +1,20 @@
-```html
+index
+
 <!DOCTYPE html>
 <html lang="ja">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名義手帳 Pro</title>
 
-<meta
-name="viewport"
-content="width=device-width,initial-scale=1.0">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
 
-<title>名義管理</title>
-
-<link
-rel="stylesheet"
-href="style.css">
+<meta name="theme-color" content="#ffffff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="名義手帳">
 
 </head>
 
@@ -22,73 +22,43 @@ href="style.css">
 
 <main>
 
+<!-- 一覧画面 -->
 <div id="listPage">
 
-<h1>名義管理</h1>
+<section id="meigiList">
+</section>
 
-<div class="sort-wrap">
-
-<select id="sortSelect">
-
-<option value="default">
-並び替えなし
-</option>
-
-<option value="win">
-当選回数順
-</option>
-
-<option value="member">
-会員番号順
-</option>
-
-<option value="name">
-名前順
-</option>
-
-<option value="join">
-入会日順
-</option>
-
-</select>
-
-</div>
-
-<div id="meigiList"></div>
-```
-
-  ```html
 <button id="addBtn">
-
 ＋ 名義追加
-
 </button>
 
-<div class="backup">
+<section class="backup">
 
 <button id="exportBtn">
-
-JSONバックアップ
-
+JSONエクスポート
 </button>
 
-</div>
+<button id="importBtn">
+JSONインポート
+</button>
+
+<input
+type="file"
+id="importFile"
+accept=".json"
+hidden>
+
+</section>
 
 </div>
 
-<div
-id="detailPage"
-class="hidden">
-
+<!-- 詳細画面 -->
+<div id="detailPage" class="hidden">
 </div>
-```
-```html
+
 </main>
 
 <script src="app.js"></script>
 
 </body>
-
 </html>
-```
-
