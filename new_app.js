@@ -1,7 +1,7 @@
-console.log("app.js 最新版");
-
 let meigiData =
 JSON.parse(localStorage.getItem("meigiData")) || [];
+
+console.log("app.js 最新版");
 
 let currentSort = "default";
 
