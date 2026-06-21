@@ -113,9 +113,11 @@ function renderMeigi() {
 <button
 onclick="copyMemberNo(event,'${item.memberNo || ""}')"
 style="
+display:block;
 background:red;
 color:white;
-padding:8px;
+padding:10px;
+font-size:14px;
 "
 >
 IDコピー
