@@ -149,8 +149,18 @@ function copyMemberNo(event, memberNo) {
 
   navigator.clipboard.writeText(memberNo);
 
-  alert("会員番号をコピーしました");
-  }
+  const toast =
+  document.getElementById("toast");
+
+  toast.classList.add("show");
+
+  setTimeout(() => {
+
+    toast.classList.remove("show");
+
+  },1500);
+
+}
 
 function showDetail(index){
 
