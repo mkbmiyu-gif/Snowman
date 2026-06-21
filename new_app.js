@@ -1,6 +1,8 @@
 let meigiData =
 JSON.parse(localStorage.getItem("meigiData")) || [];
 
+let currentSort = "default";
+
 function saveData() {
   localStorage.setItem(
     "meigiData",
