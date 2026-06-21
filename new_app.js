@@ -1012,7 +1012,13 @@ document
 renderMeigi
 );
 
+document
+.getElementById("sortSelect")
+.addEventListener("change",()=>{
 
+renderMeigi();
 
+});
+  
 renderMeigi();
 ```
