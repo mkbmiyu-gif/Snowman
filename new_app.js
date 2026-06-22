@@ -3,7 +3,7 @@ JSON.parse(
 localStorage.getItem("meigiData")
 ) || [];
 
-function saveData() {
+function saveData(){
 
 localStorage.setItem(
 "meigiData",
@@ -29,48 +29,48 @@ document.getElementById(
 "sortSelect"
 )?.value || "default";
 
-if(sort === "win"){
+if(sort==="win"){
 
 displayData.sort(
 (a,b)=>
-(b.histories?.length || 0)
+(b.histories?.length||0)
 -
-(a.histories?.length || 0)
+(a.histories?.length||0)
 );
 
 }
 
-if(sort === "member"){
+if(sort==="member"){
 
 displayData.sort(
 (a,b)=>
-(a.memberNo || "")
+(a.memberNo||"")
 .localeCompare(
-b.memberNo || ""
+b.memberNo||""
 )
 );
 
 }
 
-if(sort === "name"){
+if(sort==="name"){
 
 displayData.sort(
 (a,b)=>
-(a.name || "")
+(a.name||"")
 .localeCompare(
-b.name || ""
+b.name||""
 )
 );
 
 }
 
-if(sort === "join"){
+if(sort==="join"){
 
 displayData.sort(
 (a,b)=>
-(a.joinDate || "")
+(a.joinDate||"")
 .localeCompare(
-b.joinDate || ""
+b.joinDate||""
 )
 );
 
@@ -81,10 +81,12 @@ displayData.forEach((item)=>{
 const card =
 document.createElement("div");
 
-card.className = "card";
+card.className =
+"card";
 
 const winCount =
-(item.histories || []).length;
+(item.histories||[])
+.length;
 
 const entryCount =
 item.entryCount || 0;
@@ -105,7 +107,7 @@ const lastHistory =
 winCount
 ?
 item.histories[
-winCount - 1
+winCount-1
 ]
 :
 null;
@@ -123,20 +125,31 @@ card.innerHTML = `
 <div class="card-title">
 
 <h2>
+
 ${item.name}
+
 </h2>
 
 <p>
+
 ${item.memberNo || ""}
+
 </p>
 
 </div>
 
 <button
 class="copy-btn"
-onclick="copyMemberNo(event,'${item.memberNo || ""}')"
+onclick="
+copyMemberNo(
+event,
+'${item.memberNo || ""}'
+)
+"
 >
+
 IDコピー
+
 </button>
 
 </div>
@@ -145,8 +158,7 @@ IDコピー
 
 <span>
 
-当選
-${winCount}回
+当選 ${winCount}回
 
 </span>
 
@@ -174,8 +186,19 @@ lastHistory.title
 
 `;
 
+card.addEventListener(
+"click",
+()=>{
 
-list.appendChild(card);
+showDetail(
+meigiData.indexOf(item)
+);
+
+});
+
+list.appendChild(
+card
+);
 
 });
 
@@ -188,9 +211,12 @@ memberNo
 
 event.stopPropagation();
 
-if(!memberNo) return;
+if(!memberNo){
+return;
+}
 
-navigator.clipboard.writeText(
+navigator.clipboard
+.writeText(
 memberNo
 );
 
@@ -215,21 +241,33 @@ toast.classList.remove(
 
 function showDetail(index){
 
-const item = meigiData[index];
+const item =
+meigiData[index];
 
 document
-.getElementById("listPage")
-.classList.add("hidden");
+.getElementById(
+"listPage"
+)
+.classList.add(
+"hidden"
+);
 
 document
-.getElementById("detailPage")
-.classList.remove("hidden");
+.getElementById(
+"detailPage"
+)
+.classList.remove(
+"hidden"
+);
 
 document
-.getElementById("detailPage")
+.getElementById(
+"detailPage"
+)
 .innerHTML = `
 
-<button onclick="backToList()">
+<button
+onclick="backToList()">
 
 ← 戻る
 
@@ -245,7 +283,7 @@ document
 
 </div>
 
-<div>
+<div class="card-title">
 
 <h2>
 
@@ -260,6 +298,19 @@ ${item.memberNo || ""}
 </p>
 
 </div>
+
+<button
+class="copy-btn"
+onclick="
+copyMemberNo(
+event,
+'${item.memberNo || ""}'
+)
+">
+
+IDコピー
+
+</button>
 
 </div>
 
@@ -358,12 +409,20 @@ ${index}
 function backToList(){
 
 document
-.getElementById("detailPage")
-.classList.add("hidden");
+.getElementById(
+"detailPage"
+)
+.classList.add(
+"hidden"
+);
 
 document
-.getElementById("listPage")
-.classList.remove("hidden");
+.getElementById(
+"listPage"
+)
+.classList.remove(
+"hidden"
+);
 
 renderMeigi();
 
@@ -372,27 +431,36 @@ renderMeigi();
 function addHistory(index){
 
 const title =
-prompt("公演名");
+prompt(
+"公演名"
+);
 
-if(!title) return;
+if(!title){
+return;
+}
 
 const venue =
-prompt("会場");
+prompt(
+"会場"
+);
 
 const date =
-prompt("日付");
+prompt(
+"日付"
+);
 
 if(
 !meigiData[index]
 .histories
 ){
+
 meigiData[index]
 .histories = [];
+
 }
 
 meigiData[index]
-.histories
-.push({
+.histories.push({
 
 title,
 venue,
@@ -422,8 +490,7 @@ return;
 meigiData[
 meigiIndex
 ]
-.histories
-.splice(
+.histories.splice(
 historyIndex,
 1
 );
@@ -495,9 +562,13 @@ document
 ()=>{
 
 const name =
-prompt("名前");
+prompt(
+"名前"
+);
 
-if(!name) return;
+if(!name){
+return;
+}
 
 const memberNo =
 prompt(
@@ -597,7 +668,9 @@ document
 const file =
 e.target.files[0];
 
-if(!file) return;
+if(!file){
+return;
+}
 
 const reader =
 new FileReader();
