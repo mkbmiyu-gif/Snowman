@@ -134,16 +134,9 @@ ${item.memberNo || ""}
 
 <button
 class="copy-btn"
-onclick="
-copyMemberNo(
-event,
-'${item.memberNo || ""}'
-)
-"
+onclick="copyMemberNo(event,'${item.memberNo || ""}')"
 >
-
 IDコピー
-
 </button>
 
 </div>
