@@ -2,16 +2,38 @@
 <html lang="ja">
 
 <head>
+
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-<meta name="theme-color" content="#ffffff">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="名義手帳">
+<title>名義手帳</title>
+
+<link
+rel="manifest"
+href="manifest.json">
+
+<link
+rel="stylesheet"
+href="style.css">
+
+<meta
+name="theme-color"
+content="#F8F0D8">
+
+<meta
+name="apple-mobile-web-app-capable"
+content="yes">
+
+<meta
+name="apple-mobile-web-app-status-bar-style"
+content="default">
+
+<meta
+name="apple-mobile-web-app-title"
+content="名義手帳">
 
 </head>
 
@@ -20,13 +42,15 @@
 <main>
 
 <!-- 一覧画面 -->
-  
 <div id="listPage">
-  
+
 <div class="sort-area">
 
 <select id="sortSelect">
 
+<option value="default">
+登録順
+</option>
 
 <option value="win">
 当選回数順
@@ -34,6 +58,10 @@
 
 <option value="member">
 会員番号順
+</option>
+
+<option value="name">
+名前順
 </option>
 
 <option value="join">
@@ -45,21 +73,26 @@
 </div>
 
 <section id="meigiList">
-  
 </section>
 
 <button id="addBtn">
+
 ＋ 名義追加
+
 </button>
 
 <section class="backup">
 
 <button id="exportBtn">
+
 JSONエクスポート
+
 </button>
 
 <button id="importBtn">
+
 JSONインポート
+
 </button>
 
 <input
@@ -73,16 +106,23 @@ hidden>
 </div>
 
 <!-- 詳細画面 -->
-<div id="detailPage" class="hidden">
+<div
+id="detailPage"
+class="hidden">
+
 </div>
 
 </main>
 
-  <div id="toast">
+<!-- トースト -->
+<div id="toast">
+
 コピーしました
+
 </div>
 
 <script src="app.js"></script>
 
 </body>
+
 </html>
