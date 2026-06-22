@@ -1,175 +1,229 @@
 let meigiData =
-JSON.parse(localStorage.getItem("meigiData")) || [];
-
-console.log("app.js 最新版");
-
-let currentSort = "default";
+JSON.parse(
+localStorage.getItem("meigiData")
+) || [];
 
 function saveData() {
-  localStorage.setItem(
-    "meigiData",
-    JSON.stringify(meigiData)
-  );
+
+localStorage.setItem(
+"meigiData",
+JSON.stringify(meigiData)
+);
+
 }
-function renderMeigi() {
 
-  const list =
-  document.getElementById("meigiList");
+function renderMeigi(){
 
-  list.innerHTML = "";
+const list =
+document.getElementById(
+"meigiList"
+);
 
-  let displayData = [...meigiData];
+list.innerHTML = "";
 
-  const sort =
-  document.getElementById("sortSelect")
-  ?.value || "default";
+let displayData =
+[...meigiData];
 
-  // 当選回数順
-  if (sort === "win") {
+const sort =
+document.getElementById(
+"sortSelect"
+)?.value || "default";
 
-    displayData.sort(
-      (a, b) =>
-      (b.histories?.length || 0)
-      -
-      (a.histories?.length || 0)
-    );
+if(sort === "win"){
 
-  }
+displayData.sort(
+(a,b)=>
+(b.histories?.length || 0)
+-
+(a.histories?.length || 0)
+);
 
-  // 会員番号順
-  if (sort === "member") {
+}
 
-    displayData.sort(
-      (a, b) =>
-      (a.memberNo || "")
-      .localeCompare(
-        b.memberNo || ""
-      )
-    );
+if(sort === "member"){
 
-  }
+displayData.sort(
+(a,b)=>
+(a.memberNo || "")
+.localeCompare(
+b.memberNo || ""
+)
+);
 
-  // 名前順
-  if (sort === "name") {
+}
 
-    displayData.sort(
-      (a, b) =>
-      (a.name || "")
-      .localeCompare(
-        b.name || ""
-      )
-    );
+if(sort === "name"){
 
-  }
+displayData.sort(
+(a,b)=>
+(a.name || "")
+.localeCompare(
+b.name || ""
+)
+);
 
-  // 入会日順
-  if (sort === "join") {
+}
 
-    displayData.sort(
-      (a, b) =>
-      (a.joinDate || "")
-      .localeCompare(
-        b.joinDate || ""
-      )
-    );
+if(sort === "join"){
 
-  }
+displayData.sort(
+(a,b)=>
+(a.joinDate || "")
+.localeCompare(
+b.joinDate || ""
+)
+);
 
-  displayData.forEach((item) => {
+}
 
-    const card =
-    document.createElement("div");
+displayData.forEach((item)=>{
 
-    card.className = "card";
+const card =
+document.createElement("div");
 
-    const winCount =
-    (item.histories || []).length;
+card.className = "card";
 
-    const entryCount =
-    item.entryCount || 0;
+const winCount =
+(item.histories || []).length;
 
-    const rate =
-    entryCount
-    ?
-    Math.round(
-      winCount /
-      entryCount * 100
-    )
-    :
-    0;
+const entryCount =
+item.entryCount || 0;
 
-    const lastHistory =
-    winCount
-    ?
-    item.histories[winCount - 1]
-    :
-    null;
+const rate =
+entryCount
+?
+Math.round(
+winCount
+/
+entryCount
+*100
+)
+:
+0;
 
-    card.innerHTML = `
+const lastHistory =
+winCount
+?
+item.histories[
+winCount - 1
+]
+:
+null;
+
+card.innerHTML = `
+
 <div class="card-top">
-  <div class="card-title">
-    <h2>${item.name}</h2>
-    <p>${item.memberNo || ""}</p>
-  </div>
+
+<div class="icon">
+
+❄️
+
+</div>
+
+<div class="card-title">
+
+<h2>
+${item.name}
+</h2>
+
+<p>
+${item.memberNo || ""}
+</p>
+
+</div>
 
 <button
-onclick="copyMemberNo(event,'${item.memberNo || ""}')"
-style="
-display:block;
-background:red;
-color:white;
-padding:10px;
-font-size:14px;
+class="copy-btn"
+onclick="
+copyMemberNo(
+event,
+'${item.memberNo || ""}'
+)
 "
 >
+
 IDコピー
+
 </button>
 
-<h1 style="color:red;">テスト</h1>
-
 </div>
 
 <div class="meta">
-<span>当選 ${winCount}回</span>
-<span>${rate}%</span>
-</div>
 
-<div class="meta">
 <span>
-${lastHistory ? lastHistory.title : "当選なし"}
+
+当選
+${winCount}回
+
 </span>
+
+<span>
+
+${rate}%
+
+</span>
+
 </div>
+
+<div class="meta">
+
+<span>
+
+${lastHistory
+?
+lastHistory.title
+:
+"当選なし"}
+
+</span>
+
+</div>
+
 `;
 
-    card.onclick = () => {
-      showDetail(
-        meigiData.indexOf(item)
-      );
-    };
+card.onclick = ()=>{
 
-    list.appendChild(card);
+showDetail(
+meigiData.indexOf(item)
+);
 
-  });
+};
+
+list.appendChild(card);
+
+});
 
 }
-function copyMemberNo(event, memberNo) {
 
-  event.stopPropagation();
+function copyMemberNo(
+event,
+memberNo
+){
 
-  if (!memberNo) return;
+event.stopPropagation();
 
-  navigator.clipboard.writeText(memberNo);
+if(!memberNo) return;
 
-  const toast =
-  document.getElementById("toast");
+navigator.clipboard.writeText(
+memberNo
+);
 
-  toast.classList.add("show");
+const toast =
+document.getElementById(
+"toast"
+);
 
-  setTimeout(() => {
+toast.classList.add(
+"show"
+);
 
-    toast.classList.remove("show");
+setTimeout(()=>{
 
-  },1500);
+toast.classList.remove(
+"show"
+);
+
+},1500);
 
 }
 
@@ -186,400 +240,80 @@ document
 .classList.remove("hidden");
 
 document
-.getElementById("
-```
-
-function backToList() {
-
-  document
-  .getElementById("detailPage")
-  .classList.add("hidden");
-
-  document
-  .getElementById("listPage")
-  .classList.remove("hidden");
-
-  renderMeigi();
-
-}
-
-function addHistory(index) {
-
-  const title =
-  prompt("公演名");
-
-  if (!title) return;
-
-  const venue =
-  prompt("会場");
-
-  const date =
-  prompt("公演日");
-
-  const seat =
-  prompt("座席");
-  const memo =
-prompt("メモ");
-
-  if (!meigiData[index].histories) {
-
-    meigiData[index].histories = [];
-
-  }
-
-  meigiData[index].histories.push({
-
-title,
-venue,
-date,
-seat,
-memo
-
-  });
-
-  saveData();
-
-  showDetail(index);
-
-}
-
-function editMeigi(index) {
-
-  const item =
-  meigiData[index];
-
-  item.name =
-  prompt(
-    "名前",
-    item.name
-  );
-
-  item.memberNo =
-  prompt(
-    "会員番号",
-    item.memberNo
-  );
-
-  item.joinDate =
-  prompt(
-    "入会日（YY/MM）",
-    item.joinDate
-  );
-
-
-  saveData();
-
-  showDetail(index);
-
-}
-function editHistory(meigiIndex, historyIndex){
-
-const history =
-meigiData[meigiIndex]
-.histories[historyIndex];
-
-history.title =
-prompt(
-"公演名",
-history.title
-);
-
-history.venue =
-prompt(
-"会場",
-history.venue
-);
-
-history.date =
-prompt(
-"公演日",
-history.date
-);
-
-history.seat =
-prompt(
-"座席",
-history.seat
-);
-
-history.memo =
-prompt(
-"メモ",
-history.memo || ""
-);
-
-saveData();
-
-showDetail(meigiIndex);
-
-}
-function deleteHistory(meigiIndex, historyIndex) {
-
-  if (
-    !confirm("履歴を削除しますか？")
-  ) {
-    return;
-  }
-
-  meigiData[
-    meigiIndex
-  ].histories.splice(
-    historyIndex,
-    1
-  );
-
-  saveData();
-
-  showDetail(meigiIndex);
-
-}
-
-function deleteMeigi(index) {
-
-  if (
-    !confirm("削除しますか？")
-  ) {
-    return;
-  }
-
-  meigiData.splice(
-    index,
-    1
-  );
-
-  saveData();
-
-  backToList();
-
-}
-document
-.getElementById("addBtn")
-.addEventListener(
-"click",
-()=>{
-
-const name =
-prompt("名前");
-
-if(!name) return;
-
-const memberNo =
-prompt("会員番号");
-
-const joinDate =
-prompt(
-"入会日（YY/MM）",
-"21/01"
-);
-
-const entryCount =
-Number(
-prompt(
-"応募回数",
-0
-)
-);
-meigiData.push({
-
-name,
-memberNo,
-joinDate,
-entryCount,
-histories:[]
-
-});
-
-saveData();
-
-renderMeigi();
-
-}
-);
-
-document
-.getElementById("exportBtn")
-.addEventListener(
-"click",
-()=>{
-
-const blob =
-new Blob(
-[
-JSON.stringify(
-meigiData
-)
-],
-{
-type:
-"application/json"
-}
-);
-
-const a =
-document.createElement("a");
-
-a.href =
-URL.createObjectURL(blob);
-
-a.download =
-"meigi-backup.json";
-
-a.click();
-
-}
-);
-
-if(
-"serviceWorker"
-in navigator
-){
-
-navigator
-.serviceWorker
-.register(
-"./service-worker.js"
-);
-
-}
-
-function enableSwipe(){
-
-document
-.querySelectorAll(".history")
-.forEach(card=>{
-
-let startX = 0;
-
-card.addEventListener(
-"touchstart",
-e=>{
-
-startX =
-e.touches[0].clientX;
-
-}
-);
-
-card.addEventListener(
-"touchmove",
-e=>{
-
-const moveX =
-e.touches[0].clientX;
-
-const diff =
-startX - moveX;
-
-if(diff > 40){
-
-document
-.querySelectorAll(
-".history"
-)
-.forEach(
-h=>
-h.classList.remove(
-"swiped"
-)
-);
-
-card.classList.add(
-"swiped"
-);
-
-}
-
-if(diff < -40){
-
-card.classList.remove(
-"swiped"
-);
-
-}
-
-}
-);
-
-});
-
-}
-
-document
-.getElementById("sortSelect")
-?.addEventListener(
-"change",
-renderMeigi
-);
-
-renderMeigi();
-
-```javascript
-function showDetail(index){
-
-const item =
-meigiData[index];
-
-document
-.getElementById("listPage")
-.classList.add("hidden");
-
-document
-.getElementById("detailPage")
-.classList.remove("hidden");
-
-document
 .getElementById("detailPage")
 .innerHTML = `
 
 <button onclick="backToList()">
+
 ← 戻る
+
 </button>
 
 <div class="card">
 
-<div class="card-title">
+<div class="card-top">
+
+<div class="icon">
+
+❄️
+
+</div>
+
+<div>
 
 <h2>
+
 ${item.name}
+
 </h2>
 
 <p>
+
 ${item.memberNo || ""}
+
 </p>
 
 </div>
 
+</div>
 
-<div class="detail-row">
-
-<p class="join-date">
+<p>
 
 入会
 ${item.joinDate || ""}
 
 </p>
 
-<button
-class="add-history-btn"
-onclick="addHistory(${index})"
->
+<h3>
 
-＋
+履歴
 
-</button>
+</h3>
 
-</div>
-
-
-<div class="history-list">
-
-${(item.histories || []).map(
-(history,hIndex)=>`
+${(item.histories || [])
+.map((history,hIndex)=>`
 
 <div class="history">
 
-<div
-class="delete-area"
+<p>
+
+${history.title}
+
+</p>
+
+<p>
+
+${history.venue || ""}
+
+</p>
+
+<p>
+
+${history.date || ""}
+
+</p>
+
+<button
 onclick="
 deleteHistory(
 ${index},
@@ -587,84 +321,53 @@ ${hIndex}
 )
 ">
 
-削除
-
-</div>
-
-
-<div class="history-content">
-
-<button
-class="edit-history-btn"
-onclick="
-editHistory(
-${index},
-${hIndex}
-)
-">
-
-<svg
-width="16"
-height="16"
-viewBox="0 0 24 24"
-fill="none"
-stroke="currentColor"
-stroke-width="2"
-stroke-linecap="round"
-stroke-linejoin="round">
-
-<path d="M12 20h9"/>
-<path d="M16.5 3.5a2.1 2.1 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/>
-
-</svg>
+履歴削除
 
 </button>
 
-
-<p>
-
-<strong>
-${history.title}
-</strong>
-
-</p>
-
-<p>
-${history.venue}
-</p>
-
-<p>
-${history.date}
-</p>
-
-<p>
-${history.seat || ""}
-</p>
-
-<p class="historyMemo">
-
-${history.memo || ""}
-
-</p>
-
 </div>
 
-</div>
+`)
+.join("")}
 
-`
-).join("")}
+<button
+onclick="
+addHistory(
+${index}
+)
+">
 
-</div>
+＋履歴追加
+
+</button>
+
+<button
+onclick="
+editMeigi(
+${index}
+)
+">
+
+編集
+
+</button>
+
+<button
+onclick="
+deleteMeigi(
+${index}
+)
+">
+
+削除
+
+</button>
 
 </div>
 
 `;
 
-enableSwipe();
-
 }
-
-
 
 function backToList(){
 
@@ -679,9 +382,7 @@ document
 renderMeigi();
 
 }
-```
 
-```javascript
 function addHistory(index){
 
 const title =
@@ -693,29 +394,23 @@ const venue =
 prompt("会場");
 
 const date =
-prompt("公演日");
-
-const seat =
-prompt("座席");
-
-const memo =
-prompt("メモ");
+prompt("日付");
 
 if(
-!meigiData[index].histories
+!meigiData[index]
+.histories
 ){
-
-meigiData[index].histories = [];
-
+meigiData[index]
+.histories = [];
 }
 
-meigiData[index].histories.push({
+meigiData[index]
+.histories
+.push({
 
 title,
 venue,
-date,
-seat,
-memo
+date
 
 });
 
@@ -725,7 +420,35 @@ showDetail(index);
 
 }
 
+function deleteHistory(
+meigiIndex,
+historyIndex
+){
 
+if(
+!confirm(
+"履歴を削除しますか？"
+)
+){
+return;
+}
+
+meigiData[
+meigiIndex
+]
+.histories
+.splice(
+historyIndex,
+1
+);
+
+saveData();
+
+showDetail(
+meigiIndex
+);
+
+}
 
 function editMeigi(index){
 
@@ -746,7 +469,7 @@ item.memberNo
 
 item.joinDate =
 prompt(
-"入会日（YY/MM）",
+"入会日",
 item.joinDate
 );
 
@@ -756,93 +479,11 @@ showDetail(index);
 
 }
 
-
-
-function editHistory(
-meigiIndex,
-historyIndex
-){
-
-const history =
-meigiData[meigiIndex]
-.histories[historyIndex];
-
-history.title =
-prompt(
-"公演名",
-history.title
-);
-
-history.venue =
-prompt(
-"会場",
-history.venue
-);
-
-history.date =
-prompt(
-"公演日",
-history.date
-);
-
-history.seat =
-prompt(
-"座席",
-history.seat
-);
-
-history.memo =
-prompt(
-"メモ",
-history.memo || ""
-);
-
-saveData();
-
-showDetail(
-meigiIndex
-);
-
-}
-
-
-
-function deleteHistory(
-meigiIndex,
-historyIndex
-){
-
-if(
-!confirm(
-"履歴を削除しますか？"
-)
-){
-return;
-}
-
-meigiData[
-meigiIndex
-]
-.histories.splice(
-historyIndex,
-1
-);
-
-saveData();
-
-showDetail(
-meigiIndex
-);
-
-}
-
-
-
 function deleteMeigi(index){
 
 if(
 !confirm(
-"名義を削除しますか？"
+"削除しますか？"
 )
 ){
 return;
@@ -858,11 +499,11 @@ saveData();
 backToList();
 
 }
-```
 
-```javascript
 document
-.getElementById("addBtn")
+.getElementById(
+"addBtn"
+)
 .addEventListener(
 "click",
 ()=>{
@@ -873,20 +514,13 @@ prompt("名前");
 if(!name) return;
 
 const memberNo =
-prompt("会員番号");
+prompt(
+"会員番号"
+);
 
 const joinDate =
 prompt(
-"入会日（YY/MM）",
-"21/01"
-);
-
-const entryCount =
-Number(
-prompt(
-"応募回数",
-0
-)
+"入会日"
 );
 
 meigiData.push({
@@ -894,7 +528,7 @@ meigiData.push({
 name,
 memberNo,
 joinDate,
-entryCount,
+entryCount:0,
 histories:[]
 
 });
@@ -906,32 +540,40 @@ renderMeigi();
 }
 );
 
-
-
 document
-.getElementById("exportBtn")
+.getElementById(
+"exportBtn"
+)
 .addEventListener(
 "click",
 ()=>{
 
 const blob =
 new Blob(
+
 [
 JSON.stringify(
 meigiData
 )
 ],
+
 {
 type:
 "application/json"
 }
+
 );
 
 const a =
-document.createElement("a");
+document
+.createElement(
+"a"
+);
 
 a.href =
-URL.createObjectURL(blob);
+URL.createObjectURL(
+blob
+);
 
 a.download =
 "meigi-backup.json";
@@ -941,7 +583,72 @@ a.click();
 }
 );
 
+document
+.getElementById(
+"importBtn"
+)
+.addEventListener(
+"click",
+()=>{
 
+document
+.getElementById(
+"importFile"
+)
+.click();
+
+}
+);
+
+document
+.getElementById(
+"importFile"
+)
+.addEventListener(
+"change",
+(e)=>{
+
+const file =
+e.target.files[0];
+
+if(!file) return;
+
+const reader =
+new FileReader();
+
+reader.onload =
+()=>{
+
+meigiData =
+JSON.parse(
+reader.result
+);
+
+saveData();
+
+renderMeigi();
+
+};
+
+reader.readAsText(
+file
+);
+
+}
+);
+
+document
+.getElementById(
+"sortSelect"
+)
+.addEventListener(
+"change",
+()=>{
+
+renderMeigi();
+
+}
+);
 
 if(
 "serviceWorker"
@@ -956,90 +663,4 @@ navigator
 
 }
 
-
-
-function enableSwipe(){
-
-document
-.querySelectorAll(
-".history"
-)
-.forEach(card=>{
-
-let startX = 0;
-
-card.addEventListener(
-"touchstart",
-e=>{
-
-startX =
-e.touches[0].clientX;
-
-}
-);
-
-card.addEventListener(
-"touchmove",
-e=>{
-
-const moveX =
-e.touches[0].clientX;
-
-const diff =
-startX - moveX;
-
-if(diff > 40){
-
-document
-.querySelectorAll(
-".history"
-)
-.forEach(
-h=>
-h.classList.remove(
-"swiped"
-)
-);
-
-card.classList.add(
-"swiped"
-);
-
-}
-
-if(diff < -40){
-
-card.classList.remove(
-"swiped"
-);
-
-}
-
-}
-);
-
-});
-
-}
-
-
-
-document
-.getElementById(
-"sortSelect"
-)
-?.addEventListener(
-"change",
-renderMeigi
-);
-
-document
-.getElementById("sortSelect")
-.addEventListener("change",()=>{
-
 renderMeigi();
-
-});
-  
-renderMeigi();
-```
