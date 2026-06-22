@@ -181,13 +181,6 @@ lastHistory.title
 
 `;
 
-card.onclick = ()=>{
-
-showDetail(
-meigiData.indexOf(item)
-);
-
-};
 
 list.appendChild(card);
 
